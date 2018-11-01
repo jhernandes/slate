@@ -1,36 +1,36 @@
-# Integração Woocommerce
+# Woocommerce Integration
 
-Faça o upload do arquivo Zip pelo menu "Adicionar Novo" no Wordpress.
+Upload the Zip file from the "Add New" menu in Wordpress.
 
-## Painel de Configuração do Woocommerce
+## Woocommerce Configuration Panel
 
-Após a instalação, ative o plugin e vá ao painel de configuração
+After the installation, activate the plugin and go to the configuration panel
 
-1. Entre na página de administração do WooCommerce.
-2. Vá em Extensões > Pagamentos e ative o módulo "iPag - Cartão de Crédito"
+1. Log in to the WooCommerce admin page.
+2. Go to Extensions> Payments and activate the module "iPag"
 
-3. Nas opções do módulo iPag, preencha os campos como demonstrado abaixo:
- * Status: Habilitado
- * Título: Configure o título do método de pagamento
- * Identificação da loja: O seu login no painel da iPag
- * Bandeiras aceitas: Selecione as bandeiras desejadas
- * Número de parcelas: Número máximo de parcelas.
- * Taxa de juros: Juro aplicado nas parcelas
- * Parcelas sem juros: Parcelas sem juros
+3. In the iPag module options, complete the fields as shown below:
+ * Status: Enabled
+ * Title: Set the title of the payment method
+ * Store ID: Your iPag panel login
+ * Flags accepted: Select the desired flags
+ * Number of installments: Maximum number of installments.
+ * Interest rate: Interest applied on installments
+ * Interest free installments: Interest free installments
 
-4. Vá em Extensões > Pagamentos e ative o módulo "iPag - Boleto"
+4. Go to Extensions> Payments and activate the "iPag - Boleto" module
 
-5. Nas opções do módulo iPag, preencha os campos como demonstrado abaixo:
- * Status: Habilitado
- * Título: Configure o título do método de pagamento
- * Identificação da loja: O seu login no painel da iPag
- * Banco emissor: Selecione o banco que será utilizado
- * Dias para pagar: Número de dias até o vencimento do boleto
- * Mensagem no checkout: Configure uma mensagem que será exibida ao cliente no checkout
- * Parcelas sem juros: Parcelas sem juros
+5. In the iPag module options, complete the fields as shown below:
+ * Status: Enabled
+ * Title: Set the title of the payment method
+ * Store ID: Your iPag panel login
+ * Issuing Bank: Select the bank that will be used
+ * Days to pay: Number of days until the ticket expires
+ * Message on checkout: Set up a message that will be displayed to the customer at checkout
+ * Interest free installments: Interest free installments
 
-## Configuração dos Métodos de Pagamento
-Acesse sua conta no <a href="https://painel-sandbox.ipag.com.br">Painel do iPag</a> e configure os métodos de pagamento.
-<aside class="notice">
-    Em caso de dúvidas, entre em contato conosco enviando um email para suporte@ipag.com.br
+## Setting Payment Methods
+Sign in to your <a href="https://painel-sandbox.ipag.com"> iPag Dashboard </a> and set up payment methods.
+<aside class = "notice">
+    If you have any questions, please contact us by sending an email to suporte@ipag.com.br
 </aside>

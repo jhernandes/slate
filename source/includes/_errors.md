@@ -1,85 +1,86 @@
-# Erros
-Caso seja retornado erro, ele terá o seguinte formato:
+# Errors
+If error is returned, it will have the following format:
 
-> Erro retornado pela API do iPag
+> Error returned by iPag API
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <error>
     <code>002</code>
-    <message>Método de pagamento não configurado ou inativo no iPag.Acesse o Painel para verificar.</message>
+    <message>Payment method not configured or inactive on iPag. Access the Dashboard to verify.</message>
 </error>
 
 <?xml version="1.0" encoding="utf-8" ?>
 <error>
     <code>011</code>
-    <message>(4066553618107) - Número do cartão é inválido</message>
+    <message>(4066553618107) - Card number is invalid</message>
 </error>
 ```
 
-> Erro retornado pela API do iPag (via SDK-PHP)
+> Error returned by iPag API (via SDK-PHP)
 
 ```php
 <?php
 
-$response->error; // Código do erro
-$response->errorMessage; // Mensagem do erro
+$response->error; // Error code
+$response->errorMessage; // Error message
 ```
 
-## Erros de Submissão
-
-Código | Descrição
-------|------
-001 | Sua conta não está elegível para realizar transações no iPag.
-002 | Método de pagamento não configurado ou inativo no iPag.
-003 | O pedido já está sendo processado. Em caso de dúvidas, entre em contato com o lojista.
+## Submission Errors
 
 
-## Erros de Consulta
-
-Código | Descrição
-------|------
-100 | O campo [xpto] é obrigatório.
-101 | Sua conta não está elegível para realizar consulta de transações no iPag.
-102 | Transação não foi aceita pela operadora, ou houve um problema para recuperar o retorno da mesma.
-103 | Não existe transação no iPag com número de pedido informado.
-
-## Erros de Captura
-
-Código | Descrição
-------|------
-100 | O campo [xpto] é obrigatório.
-201 | Sua conta não está elegível para realizar captura de transações no iPag.
-202 | Transação com o transId informado não foi encontrado.
-203 | Método de pagamento não configurado ou inativo no iPag.
-204 | A transação já foi capturada.
-205 | Operação não permitida
-
-## Erros de Cancelamento
-
-Código | Descrição
-------|------
-100 | O campo [xpto] é obrigatório.
-301 | Não existe transação no iPag com número de pedido informado.
-302 | Operação não permitida.
+Code | description
+------ | ------
+001 | Your account is not eligible to transact on iPag.
+002 | Payment method not configured or inactive on iPag.
+003 | The request is already being processed. If you have any questions, please contact the retailer.
 
 
-## Bloqueio de IP
+## Query Errors
 
-O bloqueio de IP ocorre após 3 transações terem sido recusadas vindos de um mesmo cliente.
+Code | description
+------ | ------
+100 | The field [xpto] is required.
+101 | Your account is not eligible to conduct transaction queries on iPag.
+102 | Transaction was not accepted by the operator, or there was a problem to recover the return of the same.
+103 | There is no transaction on iPag with an order number entered.
+
+## Catch Errors
+
+Code | description
+------ | ------
+100 | The field [xpto] is required.
+201 | Your account is not eligible to perform transaction capture on iPag.
+202 | Transaction with the transId informed was not found.
+203 | Payment method not configured or inactive on iPag.
+204 | The transaction has already been captured.
+205 | Operation not allowed
+
+## Cancellation Errors
+
+Code | description
+------ | ------
+100 | The field [xpto] is required.
+301 | There is no transaction on iPag with an order number entered.
+302 | Operation not allowed.
+
+
+## IP Block
+
+IP blocking occurs after 3 transactions have been declined from the same client.
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <retorno>
     <num_pedido>20170420155155</num_pedido>
     <status_pagamento>7</status_pagamento>
-    <mensagem_transacao>(99) Transação não autorizada</mensagem_transacao>
-    <operadora_mensagem>Transação bloqueada: Email do cliente bloqueado após exceder o limite de 3 transações recusadas em menos de uma hora. Para desbloquear acesse o Painel iPag/Segurança/Blacklist.</operadora_mensagem>
+    <mensagem_transacao>(99) Transaction not authorized</mensagem_transacao>
+    <operadora_mensagem>Transaction blocked: Customer email blocked after exceeding the limit of 3 refused transactions in less than one hour. To unlock, go to iPag / Security / Blacklist Panel.</operadora_mensagem>
     <metodo>visa</metodo>
     <redirect>false</redirect>
 </retorno>
 ```
 
-Código | Descrição
--------|----------
-99 | Transação bloqueada: Email do cliente bloqueado após exceder o limite de 3 transações recusadas em menos de uma hora. Para desbloquear acesse o Painel iPag/Segurança/Blacklist.
+Code | description
+------- | ----------
+99 | Transaction blocked: Customer email blocked after exceeding the limit of 3 refused transactions in less than one hour. To unlock, go to iPag / Security / Blacklist Panel.

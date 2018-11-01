@@ -1,6 +1,6 @@
-# Submissão de Pagamentos
+# Payments Submission
 
-Para integrar sua Loja Virtual ou Site ao iPag, envie os seguintes parâmetros via POST ao sistema iPag
+To integrate your Virtual Store or Website with iPag, send the following parameters via POST to the iPag system
 
 ##Endpoint
 
@@ -8,15 +8,15 @@ Para integrar sua Loja Virtual ou Site ao iPag, envie os seguintes parâmetros 
 
 `https://sandbox.ipag.com.br/`
 
-**Producão**
+**Production**
 
-`Faça a requisição para suporte@ipag.com.br`
+`Make the request to suporte@ipag.com.br`
 
-##Realizar Pagamento (Criar Transação)
+##Make Payment (Create Transaction)
 
 `POST /service/payment`
 
-> Exemplo via [SDK PHP](https://github.com/jhernandes/ipag-sdk-php)
+> Example via [SDK PHP](https://github.com/jhernandes/ipag-sdk-php)
 
 ```php
 <?php
@@ -134,100 +134,100 @@ curl -X POST \
   </retorno>
 ```
 
-### Dados de identificação
+### Identification Data
 
-Campo | Tamanho | Tipo | Obrigatório | Descrição
+Field | Size | Type | Required | Description
 --------- | ----- | ----- | ----------- | ---------
-identificacao | 60 | string | sim | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
-identificacao2 | 60 | string | não | Código de identificação do parceiro no iPag (Marketplace)
+identificacao | 60 | string | yes | Estabilishment identification code on iPag (Access Login on iPag Panel).
+identificacao2 | 60 | string | no | Partner identification code on iPag (Marketplace)
 
 
-### Dados da operação
-Campo | Tamanho | Tipo | Obrigatório | Descrição
+### Operation Data
+Field | Size | Type | Required | Description
 --------- | ----- | ----- | ----------- | ---------
-metodo | 15 | string | sim | Método de Pagamento * veja os valores possíveis na seção [Métodos](#m-todos)
-operacao | 10 | string | sim | Operação * veja os valores possíveis na seção [Operações](#opera-es)
-pedido| 20 | string | sim | Número do pedido (Restrição é que não pode ser igual a outro já enviado ao iPag, aconselhamos um número sequencial)
-url_retorno | 50 | string | sim | URL de retorno à Loja Virtual ou Site.
-retorno_tipo | 5 | string | sim | Informar 'xml'.
-boleto_tipo | 5 | string | sim | Informar 'xml'.
+metodo | 15 | string | yes | Payment Method * see possible values at section [Methods](#m-todos)
+operacao | 10 | string | yes | Operation * see the possible values at section [Operations](#opera-es)
+pedido| 20 | string | yes | Order number (Restriction is that it can not be the same as another already sent to iPag. We advise a sequential number)
+url_retorno | 50 | string | yes | Return URL to the Virtual Store or Site.
+retorno_tipo | 5 | string | yes | Inform 'xml'.
+boleto_tipo | 5 | string | yes | Inform 'xml'.
 
-### Dados da transação
+### Transaction Data
 
-Campo | Tamanho | Tipo | Obrigatório | Descrição
+Field | Size | Type | Required | Description
 --------- | ----- | ----- | ----------- | ---------
-valor | 12 | decimal | sim | Valor total da compra. Deve-se usar pontos como separador de casas decimais, ex: 100.00
-captura | 1 | string | não | Define se irá autorizar ou capturar a transação. Se não informado irá utilizar a configuração padrão definida no Painel iPag. <br>Padrão = 'P'<br> Somente Autorizar = 'A' <br> Captura Automática = 'C'
-parcelas | 3 | number | não (se cartão, sim) | Número de Parcelas, minimo: 1, máximo: 12
-ip | 60 | string | não (porém recomendado) | IP do comprador, permitido IPV4 e IPV6
-frete_valor | 12 | decimal | não | Valor do frete cobrado, apenas informativo, não será somado ao valor da transação
-frete_tipo | 100 | string | não | Descrição do frete, exemplo: Pac (Aproximadamente 5 dias para entrega)
-antifraude | 1 | boolean | não | Define se irá consultar no Antifraude ou não, se e somente se existir antifraude configurado na conta. Valor padrão: true (1).
+valor | 12 | decimal | yes | Total a amount of purchase. Points must be used as a decimal point separator, eg: 100.00
+captura | 1 | string | no | Sets whether to authorize or capture the transaction. If not informed will use the default setting set in iPag Panel. <br> Default = 'P' <br> Only Authorize = 'A' <br> Automatic Capture = 'C'
+parcelas | 3 | number | no (if card, yes) | Number of Installments, minimum: 1, maximum: 12
+ip | 60 | string | no (but recommended) | computer's ip,  IPV4 and IPV6 allowed
+frete_valor | 12 | decimal | no | Freight amount charged, this is just informative, not added to the total amount
+frete_tipo | 100 | string | no | Freight description, example: Pac (Approximately 5 days for delivery)
+antifraude | 1 | boolean | no | Sets whether to check in Anti-Fraud or not, only if anti-fraud is configured in the account. Default value: true (1)
 
-### Dados do Cartão de Crédito/Débito
+### Debit/Credit Data
 
-Campo | Tamanho | Tipo | Obrigatório | Descrição
+Field | Size | Type | Required | Description
 --------- | ----- | ----- | ----------- | ---------
-softdescriptor | 13 | string | não| Identificação na Fatura do Cartão (Cielo, Zoop). Ex.: MINHALOJA
-nome_cartao | 30 | string | não (se cartão, sim) | Nome do titular do cartão de crédito.
-num_cartao | 16 | number | não (se cartão, sim) | Número do cartão de crédito).
-cvv_cartao | 3 | number | não (se cartão, sim) | Código de verificação do cartão de crédito
-mes_cartao | 2 | number | não (se cartão, sim) | Mês de validade do cartão de crédito
-ano_cartao | 2 | number | não (se cartão, sim) | Ano de validade do cartão de crédito
+softdescriptor | 13 | string | no| Identification on the Card Invoice (Cielo, Zoop). Ex: MYSTORE
+nome_cartao | 30 | string | no (if card, yes) | Name of the credit card holder.
+num_cartao | 16 | number | no (if card, yes) | Credit card number.
+cvv_cartao | 3 | number | no  (if card, yes) | Credit card verification number.
+mes_cartao | 2 | number | no  (if card, yes) | Credit card expiry month.
+ano_cartao | 2 | number | no  (if card, yes) |  Credit card expiry year.
 
-### Dados do Cliente
+### Customer Data
 
-Campo | Tamanho | Tipo | Obrigatório | Descrição
+Field | Size | Type | Required | Description
 --------- | ----- | ----- | ----------- | ---------
-nome | 30 | string | sim | Nome do cliente
-tipo_pessoa | 1 | char | não | “j” para pessoas jurídicas e “f” para pessoas físicas
-documento | 18 | string | não | CPF ou CNPJ do sacado
-email | 30 | string | não| E-mail do cliente
-fone | 10 | string | não | Telefone do cliente
-birthdate | 10 | string | não | Data de nascimento do cliente (Ex.: 1989-03-28)[AAAA-MM-DD]
+nome | 30 | string | yes | Customer name
+tipo_pessoa | 1 | char | no | "J" for legal persons and "f" for individuals
+documento | 18 | string | no | Customer CPF or CNPJ
+email | 30 | string | no| Customer email
+fone | 10 | string | no | Customer phone
+birthdate | 10 | string | no | Customer birthdate (Ex.: 1989-03-28)[AAAA-MM-DD]
 
-### Dados do Endereço de Cobrança/Envio
+### Billing / Shipping Address Data
 
-Campo | Tamanho | Tipo | Obrigatório | Descrição
+Field | Size | Type | Required | Description
 --------- | ----- | ----- | ----------- | ---------
-endereco | 30 | string | não | Endereço completo do cliente
-numero_endereco | 5 | number | não | Número do Endereço
-complemento | 100 | string | não | Complemento do Endereço
-bairro | 15 | string | não | Bairro do cliente
-cidade | 20 | string | não | Cidade do cliente
-estado | 2 | string | não | Estado do cliente
-pais | 15 | string | não | País do cliente
-cep | 8 | string | não | Cep do cliente
+endereco | 30 | string | no | Customer full address
+numero_endereco | 5 | number | no | Address number
+complemento | 100 | string | no | Address complement
+bairro | 15 | string | no | Customer neighborhood
+cidade | 20 | string | no | Customer city
+estado | 2 | string | no | Customer state/province
+pais | 15 | string | no | Customer country
+cep | 8 | string | no | Customer zipcode
 
-### Dados de Produto/Carrinho
+### Product/Cart Data
 
-Campo | Tamanho | Tipo | Obrigatório | Descrição
+Field | Size | Type | Required | Description
 --------- | ----- | ----- | ----------- | ---------
-produtos[#][nome] | 100 | string | não | Nome do produto
-produtos[#][quantidade] | 100 | integer | não | Quantidade
-produtos[#][valor] | 10 | float | não | Valor unitário do produto
-produtos[#][sku] | 100 | string | não | código único do produto
-produtos[#][descricao] | 255 | string | não | Descrição do produto
+produtos[#][nome] | 100 | string | no | Product name
+produtos[#][quantidade] | 100 | integer | no | Quantity
+produtos[#][valor] | 10 | float | no | Unit price
+produtos[#][sku] | 100 | string | no | Unique product code 
+produtos[#][descricao] | 255 | string | no | Product desciption
 
 <aside class="info">
-<b>Substitua o # por um número que identifique este produto.</b><br><br>
+<b>Replace # with a number that identifies this product.</b><br><br>
 
-Exemplo:<br><br>
-produtos[1][nome] = 'Camisa Azul'<br>
+Example:<br><br>
+produtos[1][nome] = 'Blue shirt'<br>
 produtos[1][quantidade] = 2<br>
 produtos[1][valor] = 17.89<br>
 produtos[1][sku] = 'CAS8172AA'<br>
-produtos[1][descricao] = 'CAMISA AZUL COLEÇÃO INVERNO 2018'<br>
+produtos[1][descricao] = 'BLUE SHIRT WINTER COLLECTION 2018'<br>
 <br><br>
-produtos[2][nome] = 'Camisa Verde'<br>
+produtos[2][nome] = 'Green Shirt'<br>
 produtos[2][quantidade] = 1<br>
 produtos[2][valor] = 19.89<br>
 produtos[2][sku] = 'CAS817255'<br>
-produtos[2][descricao] = 'CAMISA VERDE COLEÇÃO INVERNO 2018'
+produtos[2][descricao] = 'GREEN SHIRT WINTER COLLECTION 2018'
 </aside>
 
 
-## Campos adicionais para Boleto (iPag/Zoop)
+## Additional fields for Billet (iPag/Zoop)
 
 > Exemplo:
 
@@ -272,28 +272,27 @@ curl -X POST \
   -F 'demonstrativos[2]=Demonstrativo 2'
 ```
 
-Campo | Tamanho | Tipo | Obrigatório | Descrição
+Field | Size | Type | Required | Descrription
 --------- | ----- | ----- | ----------- | ---------
-vencto | 10 | date | sim | Data de vencimento (DD/MM/YYYY). Se não for informado, o vencimento será a data de hoje + o prazo informado nas configurações do iPag.
-instrucoes[] | 80 | string | não | Para alterar as linhas de instruções dos Boletos emitidos pelo iPag/Zoop envie o campo instrucoes[1], instrucoes[2] e instrucoes[3] se necessário.
-demonstrativos[] | 80 | string | não | Para alterar as linhas de demonstrativo dos Boletos emitidos pelo iPag/Zoop envie o campo demonstrativos[1], demonstrativos[2] se necessário.
+vencto | 10 | date | yes | Due date (DD/MM/YYYY). If not informed, the expiration date will be today + the deadline entered in the iPag settings.
+instrucoes[] | 80 | string | no | To change the instruction lines of the Boards issued by iPag / Zoop, send the field instructions [1], instructions [2] and instructions [3] if necessary.
+demonstrativos[] | 80 | string | no | To change the statement lines of the Billets issued by iPag / Zoop send the field demonstratives [1], statements [2] if necessary.
+## Additional Fields for Split with Billets (iPag/Zoop Marketplace Only)
 
-## Campos adicionais para Split com Boletos (iPag/Zoop Marketplace Apenas)
+In order to be able to split with billets it's necessary to send the split rule along with the fields in the transaction request.
 
-Para que seja possível fazer split com boletos é necessário enviar a regra de split juntamente com os campos no request da transação.
-
-> Exemplo:
+> Example:
 
 ```php
 <?php
 // VIA IPAG-SDK-PHP
-$payment->addSplitRule(
-  $ipag->splitRule()
-  ->setSellerId('c66fabf44786459e81e3c65e339a4fc9')
+$splitRule = new SplitRule();
+$splitRule->setSellerId('c66fabf44786459e81e3c65e339a4fc9')
   ->setPercentage(95)
-  ->setLiable(1)
-  // ->setAmount(9.90)
-);
+  ->setLiable(1);
+// ->setAmount(9.90)
+
+$ipag->payment()->addSplitRule($splitRule);
 /*
   Você pode adicionar quantas regras forem necessárias e permitidas.
 */
@@ -328,24 +327,24 @@ curl -X POST \
   -F 'split[2][liable]=1' \
 ```
 
-Campo | Tamanho | Tipo | Obrigatório | Descrição
+Field | Size | Type | Required | Description
 --------- | ----- | ----- | ----------- | ---------
-split[] | - | container | não | Container (Array)
-split[1][seller_id] | 50 | string | sim | SellerId ou Login do vedendor. Esta informação é passada ao criar um vededor.
-split[1][percentage] | 2 | integer | sim/não | Valor em Porcentagem que será repassado ao vendedor não pode ser maior que o valor total somado a taxa que será cobrada. Não obrigatório se enviado 'amount';
-split[1][amount] | 5 | double | sim/não | Valor absoluto em reais que será repassado ao vendedor não pode ser maior que o valor total somado a taxa que será cobrada. Não obrigatório caso enviado 'percentage'
-split[1][liable] | 1 | integer | não | Define se o recebedor arca com prejuízo em caso de chargeback ou não. 1 arca; 0 não arca.
+split[] | - | container | no | Container (Array)
+split[1][seller_id] | 50 | string | yes | SellerId or Vendor Login. This information is passed when creating a seller.
+split[1][percentage] | 2 | integer | yes/no | Percentage Value that will be passed on to the seller can't be greater than the total amount plus the fee that will be charged. Not required if sent 'amount';
+split[1][amount] | 5 | double | yes/no | Absolute value in Brazilian Real that will be passed on to the seller can't be greater than the total amount plus the fee that will be charged. Not required if sent 'percentage'
+split[1][liable] | 1 | integer | no | Defines whether the receiver will take the charge in case of chargeback or not. 1- Yes, 2- No.
 
 
-Para adicionar mais de uma regra incremente o valor: split[1], split[2], etc...
+To add another rule, increase the value: split [1], split [2], etc ...
 
 <aside class="warning">
-<b>Caso seja informado um valor maior que o da venda nos campos 'percentage' ou 'amount', será recusado o pagamento.</b>
+<b>If informed a higher value than the sale in the 'percentage' or 'amount' fields, payment will be refused.</b>
 </aside>
 
-## Campos adicionais para 1-click buy
+## Additional Fields for  1-click buy
 
-> Exemplo:
+> Example:
 
 ```php
 <?php
@@ -410,18 +409,18 @@ curl -X POST \
 </retorno>
 ```
 
-Campo | Tamanho | Tipo | Obrigatório | Descrição
+Field | Size | Type | Required | Description
 --------- | ----- | ----- | ----------- | ---------
-gera_token_cartao | 5 | boolean | Obrigatório na criação do pedido | Utilizado para realizar a transação em que os dados do Cartão ficam armazenado no iPag. Este parâmetro é utilizado para implementar o recurso de Pagamento com 1 Click
-token_cartao | 37 | string | Obrigatório na utilização do token | Quando o cliente fizer uma compra utilizando a opção de Pagamento com 1 Click, este parâmetro deverá ser obrigatoriamente enviado. Neste caso, os parâmetros a seguir não devem ser enviados: nome_cartao, num_cartao, metodo, cvv_cartao, mes_cartao, ano_cartao
+gera_token_cartao | 5 | boolean | Required when creating order | Used to perform the transaction in which the Card data is stored in iPag. This parameter is used to implement the 1 Click Payment feature.
+token_cartao | 37 | string | Required when using token | When the customer makes a purchase using the 1-Click Payment option, this parameter must be sent. In this case, the following parameters should not be sent: nome_cartao, num_cartao, metodo, cvv_cartao, mes_cartao, ano_cartao
 
 <aside class="info">
-<b>Para compras via OneClick e Assinaturas é necessário entrar em contato com a Adquirente e solicitar a liberação de transações sem a necessidade do CVV (Código de Segurança do Cartão).</b>
+<b>For purchases via OneClick and Subscriptions, it is necessary to contact the Acquirer and request the liberation of transactions without the need for the CVV (Card Security Code).</b>
 </aside>
 
-## Campos adicionais para Recorrência (Assinatura)
+## Additional Fields for Recurrence (Signature)
 
-> Exemplo de Recorrência (Assinatura)
+> Recurrence Example (Signature)
 
 ```php
 <?php
@@ -494,38 +493,39 @@ curl -X POST \
 </retorno>
 ```
 
-Parâmetro | size | type | Obrigatório | Descrição
+Parameter | Size | Type | Required | Description
 --------- | ----- | ----- | ----------- | ---------
-frequencia | 2 | number | sim | Utilizado na criação de uma transação recorrente. Este campo deverá definir a frequência dos intervalos em que a cobrança será realizada.
-intervalo | 5 | string | sim | Utilizado na criação de uma transação recorrente. Define a unidade de intervalo que será utilizada. ('day', 'week' ou 'month')
-inicio | 10 | date | sim | Utilizado na criação de uma transação recorrente. A primeira cobrança ocorre no dia da criação da recorrência. As próximas cobranças ocorrerão no dia especificado no inicio + (frequencia*intervalo). FORMATO: "DD/MM/YYYY"
-valor_rec | 12 | decimal | não | Valor que será cobrado no primeiro vencimento da recorrência. Não é obrigatório, caso não informado será utilizado o valor da transação (valor).
-assinatura_parcela | 2 | integer | não | Parcelamento que será utilizado na cobrança da Assinatura.
-ciclos | 2 | number | não | Define o número de ciclos de transações recorrentes que serão realizadas.
-trial | 1 | boolean | não | Se trial = 1 ou true então a primeira cobrança (valor da transação) será de R$1,00 afim de realizar uma transação de validação para geração do token.
-trial_ciclos | 2 | number | não | Define o número de ciclos de transações recorrentes em período trial.
-trial_frequencia | 2 | number | não | Define a frequencia em que cada ciclo da recorrêcia será executado. (Ex: A cada 1 mês, ou, a cada 6 meses).
-trial_valor | 12 | decimal | não | Define o valor que será cobrado durante o período trial.
+frequencia | 2 | number | yes | Used when creating a recurring transaction. This field should set the frequency of the intervals that will be charged.
+intervalo | 5 | string | yes | Used when creating a recurring transaction. Sets the interval unit to be used. ('day', 'week' or 'month')
+inicio | 10 | date | yes | Used when creating a recurring transaction. The first charge occurs on the day the recurrence is created. The next charges will occur on the day specified at the beginning + (frequency * interval). FORMAT: "DD / MM / YYYY"
+valor_rec | 12 | decimal | no | Amount to be charged on the first maturity of the recurrence. It is not mandatory, if not informed, the value of the transaction (value) will be used.
+assinatura_parcela | 2 | integer | no | Installment that will be used to collect the Subscription.
+ciclos | 2 | number | no | Defines the number of recurring transaction cycles that will be performed.
+trial | 1 | boolean | no  | If trial = 1 or true then the first charge (transaction value) will be R$ 1.00 in order to perform a validation transaction to generate the token.
+trial_ciclos | 2 | number | no | Sets the number of recurring transaction cycles in trial period.
+trial_frequencia | 2 | number | no | Defines the frequency at which each cycle of the recurrence will be executed. (Ex: Every 1 month, or, every 6 months).
+trial_valor | 12 | decimal | no  | Sets the amount that will be charged during the trial period.
 
-### Observações
-A primeira cobrança ocorre no ato da criação da recorrência.
+### Comments
+The first charge occurs at the time of recurrence creation.
 
-Ex: Criação de uma recorrência mensal no dia 10/05/2016 e inicio = 01/06/2016.
-A primeira cobrança será feita no dia 10/05/2016 e a próxima cobrança ocorrerá no dia 01/07/2016.  01/06/2016 + 1 * month
+Ex: Creation of a monthly recurrence on 10/05/2016 and beginning = 01/06/2016.
+The first charge will be made on 10/05/2016 and the next charge will occur on 01/07/2016. 01/06/2016 + 1 * month
 
-### Exemplos de transações recorrentes
+### Examples of recurring transactions
 
 **a)** frequencia = 1, intervalo = month, ciclos = 3, inicio = 01/01/2015
-Será criada uma cobrança recorrente mensal, que terá início em 01/01/2015 e será cobrada três vezes, finalizando em 01/03/2015.
+A recurring monthly charge will be created, which will start on 01/01/2015 and will be charged three times, ending on 01/03/2015.
 
 **b)** frequencia = 3, intervalo = month, inicio = 01/01/2015
-Será criada uma cobrança recorrente trimestral, que terá início em 01/01/2015 e será cobrada por tempo indeterminado.
+A recurring quarterly charge will be created, which will start on 01/01/2015 and will be charged indefinitely.
 
-**c)** Caso queira criar uma recorrência com período TRIAL sendo a primeira cobrança com um valor de R$1,00 apenas autorizado (não debita do cartão do cliente), envie também o parâmetro trial = (1 ou true), neste caso é necessário informar o *valor_rec* que será cobrado na data início.
 
-**d)** Caso queira criar uma recorrência com período TRIAL com um valor especifico durante esse período, é obrigátorio o envio dos seguintes parâmetros: *trial_ciclos, trial_frequencia e trial_valor*.
+**c)** If you want to create a recurrence with a TRIAL period, the first charge with a value of R$ 1.00 is only authorized (not debit from the customer card), also send the trial = (1 or true) parameter, in this case it is necessary to inform the * value_rec * that will be charged on the start date.
 
-**Exemplo:** Cobrar R$10,00 de adesão, com um período de 3 meses promocional de R$5,00, e no 4 mês cobrar o valor normal de R$10,00. Envie o seguinte:
+**d)** If you want to create a recurrence with TRIAL period with a specific value during that period, it is mandatory to send the following parameters: * trial_ciclos, trial_frequencia and trial_valor *.
+
+** Example: ** Charge R$ 10.00 membership, with a promotional period of 3 months of R$ 5.00, and in the 4 month charge the normal value of R$ 10.00. Please submit the following:
 
 intevalo = 'month'<br/>
 frequencia = 1<br/>
@@ -535,7 +535,7 @@ trial_ciclos = 4 (adesão + 3 meses trial)<br/>
 trial_frequencia = 1<br/>
 trial_valor = 5.00<br/>
 
-**Exemplo:** Cobrar R$1,00 no ato (trial = true), com um período de 3 meses promocional de R$5,00, e no 4 mês cobrar o valor normal de R$10,00. Envie o seguinte:
+** Example: ** Charge R$ 1.00 in the trial (trial = true), with a promotional period of 3 months of R$ 5.00, and in the 4 month charge the normal value of R$ 10.00. Please submit the following:
 
 intevalo = 'month'<br/>
 frequencia = 1<br/>
@@ -547,39 +547,39 @@ trial_frequencia = 1<br/>
 trial_valor = 5.00<br/>
 
 <aside class="warning">
-<b>Se definido como verdadeiro o parâmetro TRIAL, será realizado uma transação de R$1,00, somente como aprovada (Não gerará cobrança para o cliente). Essa transação é realizada para validar o cartão do cliente e criar o token de recorrência. Essa transação não deve ser capturada, mas pode, se desejar, ser cancelada via API ou Painel.</b>
+<b>If the TRIAL parameter is set to true, a transaction of R$ 1.00 will be performed, only as approved (It will not generate a charge to the customer). This transaction is performed to validate the customer's card and create the recurrence token. This transaction should not be captured, but may, if desired, be canceled via API or Dashboard.</b>
 </aside>
 
 <aside class="info">
-O <b>trial_ciclos</b> é calculado da seguinte forma: <i>primeira cobrança + período desejado</i>, caso queira 3 ciclos de trial, informe trial_ciclos = 4.
+The <b>trial_ciclos</b> is calculated as follows: <i>first charge + desired period</i>, if you want 3 trial cycles, inform trial_ciclos = 4.
 </aside>
 
-### Importante
+### Important
 
 <aside class="info">
-<b>Para compras via OneClick e Assinaturas é necessário entrar em contato com a Adquirente e solicitar a liberação de transações sem a necessidade do CVV (Código de Segurança do Cartão). Esse tipo de transação não informa esse dado, por esse motivo é necessário a liberação.</b>
+<b>For purchases via OneClick and Subscriptions, it is necessary to contact the Acquirer and request the liberation of transactions without the need for the CVV (Card Security Code). This type of transaction does not report this data, therefore release is required.</b>
 </aside>
 
-Ao criar uma transação recorrente, **certifique-se** de informar o profile_id na URL de retorno. (profile_id é um número único que deve ser gerado pela loja e será a referência da recorrência para a loja e iPag). A URL de retorno para este caso deve ter a seguinte estrutura:
+When creating a recurring transaction, ** make sure ** to inform the profile_id in the return URL. (profile_id is a unique number that should be generated by the store and will be the recurrence reference for the store and iPag). The return URL for this case should have the following structure:
 
 **HTTP://www.loja.com.br/controller/profile_id/<profile_id>**
 
-**Exemplo: http://sualoja.com.br/retornoipag/profile_id/123456**
+**Example: http://sualoja.com.br/retornoipag/profile_id/123456**
 
 <aside class="info">
-O <b>profile_id</b> é um id único que deve ser gerado e controlado pelo integrador, ele irá referênciar a transação recorrente.
-Quando houver uma atualização de pagamento o iPag irá tentar enviar um POST com o status atualizado do Pagamento. Caso o iPag não consiga enviar a resposta (HTTP 200), ele irá tentar novamente após algum tempo.
+The <b>profile_id</b> is a unique id that must be generated and controlled by the integrator, it will reference the recurring transaction.
+When there is a payment update, iPag will try to send a POST with the updated Payment status. If iPag is unable to send the response (HTTP 200), it will try again after some time.
 </aside>
 
 <aside class="warning">
-<b>Se não houver um endpoint (url_retorno) com profile_id informado o iPag não será capaz de enviar o status atualizado dos pagamentos referentes a recorrência.</b>
+<b>If there is no endpoint (url_retorno) with profile_id informed  iPag will not be able to send the updated status of recurring payments.</b>
 </aside>
 
-## Retorno
+## Return
 
-O iPag retorna os seguintes parâmetros via POST à URL informada pelo parâmetro “url_retorno”.
+iPag returns the following parameters via POST to the URL reported by the "url_backup" parameter.
 
-Caso o retorno tenha sido solicitado em XML, os mesmo parâmetros serão retornados, mas em formato XML.
+If the return has been requested in XML, the same parameters will be returned, but in XML format.
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -599,82 +599,82 @@ Caso o retorno tenha sido solicitado em XML, os mesmo parâmetros serão retorn
 </retorno>
 ```
 
-Parâmetros | Descrição
+Parameter | Description
 --------- | ----------------
-id_transacao | TID (Número emitido pela adquirente para identificar a transação)
-valor | Valor total da transação
-num_pedido | Número do pedido da loja
-status_pagamento | Status da transação. Veja os valores possíveis na seção Status das Transações deste documento
-mensagem_transacao | Mensagem da transação
-metodo | Método de pagamento utilizado para a transação. Veja os valores possíveis na seção Métodos deste documento
-operadora | Adquirente onde foi realizada a transação
-operadora_mensagem | Mensagem enviada pela Adquirente
-id_librepag | Id da Transação iPag
-autorizacao_id | Auth Id emitido pela Adquirente
-url_autenticacao | Url de validação para cartões de débito, ou link de impressão do boleto
+id_transacao | TID (Number issued by the acquirer to identify the transaction)
+valor | Total Transaction Amount
+num_pedido | Store order number
+status_pagamento | Transaction status. See the possible values ​​in the Transaction Status section of this document
+mensagem_transacao | Transaction message
+metodo | Payment method used for the transaction. See the possible values ​​in the Methods section of this document
+operadora | Acquirer where the transaction was performed
+operadora_mensagem | Message sent by the Acquirer 
+id_librepag |iIPag Transaction Id
+autorizacao_id | Auth Id issued by the Acquirer
+url_autenticacao | Valid debit card validation url, or billet print link
 
 
-**Parâmetros adicionais quando Recorrência (assinatura) ou OneClick**
+**Additional parameters when Recurrence (signature) or OneClick**
 
-Parâmetros | Descrição
+Parameters | Description
 -----------|----------
-token |  Trata-se do token gerado quando o parâmetro gera_token_cartao é enviado.
-last4 | Referente aos 4 últimos dígitos do cartão. Somente é retornado quando o parâmetro gera_token_cartao é enviado.
-mes | Referente ao mês de vencimento do cartão. Somente é retornado quando o parâmetro gera_token_cartao é enviado.
-ano | Referente ano de vencimento do cartão. Somente é retornado quando o parâmetro gera_token_cartao é enviado.
-id_assinatura | Id da assinatura criado pelo iPag.
+token |  This is the token generated when the gera_token_cartao parameter is sent.
+last4 | Refer to the last 4 digits of the card. It is only returned when the gera_token_cartao parameter is sent.
+mes | Regarding the month of expiration of the card. It is only returned when the gera_token_cartao parameter is sent.
+ano | Referring year of the card. It is only returned when the gera_token_cartao parameter is sent.
+id_assinatura | Signature Id created by iPag.
 
-## Operações
+## Operations
 
-*Observe que a primeira letra de cada operação deve ser maiúscula*
+*Note that the first letter of each operation must be uppercase*
 
-Operações | Método | Descrição
+Operations | Methods | Description
 --------- | ------ | --------
 Pagamento | POST | /service/payment
 Consulta | POST | /service/consult
 Captura | POST | /service/capture
 Cancela | POST | /service/cancel
 
-## Métodos
-###Cartões
+## Methods
+###Cards
 
-**Método** | Tipo
+**Method** | Type
 -----------|--------
-**visa** | crédito
-**mastercard** | crédito
-**diners** | crédito
-**amex** | crédito
-**elo** | crédito
-**discover** | crédito
-**hipercard** | crédito
-**hiper** | crédito
-**jcb** | crédito
-**aura** | crédito
-**visaelectron** | débito
-**maestro** | débito
+**visa** | credit
+**mastercard** | credit
+**diners** | credit
+**amex** | credit
+**elo** | credit
+**discover** | credit
+**hipercard** | credit
+**hiper** | credit
+**jcb** | credit
+**aura** | credit
+**visaelectron** | debit
+**maestro** | debit
 
-###Boleto
+###Billet
 
-Empresa | **Método** | Tipo
+Company | **Method** | Type
 --------| -----------|--------
-Santander | **boleto_banespasantander** | boleto impresso
-Banco do Brasil | **boletobb** | boleto impresso
-Zoop | **boletozoop** | boleto impresso
-Itaú | **boletoitaushopline** | boleto impresso
-Bradesco | **boletoshopfacil** | boleto impresso
-Sicredi | **boletosicredi** | boleto impresso
+Santander | **boleto_banespasantander** | printed billet
+Banco do Brasil | **boletobb** | printed billet
+Zoop | **boletozoop** | printed billet
+Itaú | **boletoitaushopline** | printed billet
+Bradesco | **boletoshopfacil** | printed billet
+Sicredi | **boletosicredi** | printed billet
 
-###Transferência (Office Bank)
+###Transfer (Office Bank)
 
-**Método** | Tipo
+**Method** | Type
 -----------|--------
-**itaushopline** | Transferência e Boleto
-**bancobrasil** | Transferência
+**itaushopline** | Transfer and Billet
+**bancobrasil** | Transfer
 
 
-## Status das Transações
+## Transaction Status
 
-Código | Descrição
+Code | Description
 ------- | --------------
 1 | Iniciado
 2 | Boleto impresso

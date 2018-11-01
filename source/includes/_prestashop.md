@@ -1,26 +1,26 @@
-# Integração Prestashop
+# Prestashop Integration
 
-Copie o conteúdo do arquivo Zip para o diretório onde o Prestashop está instalado.
+Copy the contents of the Zip file to the directory where Prestashop is installed.
 
-## Configuração no painel de administração do Prestashop
+## Configuration in the Prestashop admin panel
 
-1. Entre na página de administração do Prestashop.
+1. Enter the Prestashop admin page.
 
- Vá em Módulos->Modules.
+ Go to Modules-> Modules.
 
- Na seção Payment e Gateways, procure por iPag e instale.
+ In the Payment and Gateways section, look for iPag and install.
 
-2. Após a instalação, configure o módulo como demonstrado abaixo
- * Ativo: 1
- * Código iPag: O seu login junto a iPag
- * Nome do método: Pagamento com iPag
- * Taxa de Juros (%): Taxa de juros mensal. Deixe 0 caso não queira cobrar juros
- * Número de parcelas sem juros: Número máximo de parcelas para as quais não se cobrará juros.
- * Valor mínimo de cada parcela: Valor mínimo de cada parcela
- * Número máximo de Parcelas: Quantidade máxima de parcelas
+2. After installation, configure the module as shown below
+ * Active: 1
+ * IPag code: Your login with iPag
+ * Method name: Payment with iPag
+ * Interest rate (%): Monthly interest rate. Leave 0 if you do not want to charge interest
+ * Number of installments without interest: Maximum number of installments for which no interest will be charged.
+ * Minimum value of each installment: Minimum value of each installment
+ * Maximum number of installment: Maximum number of installment
 
-## Configuração dos Métodos de Pagamento
-Acesse sua conta no <a href="https://painel.ipag.com.br"> Painel do iPag</a> e configure os métodos de pagamento.
-<aside class="notice">
-    Em caso de dúvidas, entre em contato conosco enviando um email para suporte@ipag.com.br
+## Setting Payment Methods
+Sign in to your <a href="https://painel.ipag.com"> iPag Dashboard </a> and set up payment methods.
+<aside class = "notice">
+    If you have any questions, please contact us by sending an email to suporte@ipag.com.br
 </aside>

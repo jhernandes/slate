@@ -1,32 +1,34 @@
-# Autenticação API
+# API Authentication
 
-## Para o que é utilizada a API KEY ?
+## What is the API Key used for?
 
-A API KEY é utilizada para realizar a autenticação para as operações na API do iPag.
+The API Key is used to authenticate  the operations  in the iPag API.
 
 ## IPAG API KEY
 
-**Acesse:**
+**Access:**
 
-[SANDBOX - Painel iPag - Minha Conta](https://painel-sandbox.ipag.com.br/?r=admin/alterardados&navegation=addplus).
+[SANDBOX - iPag Panel - My Account](https://painel-sandbox.ipag.com.br/?r=admin/alterardados&navegation=addplus).
 
 <aside class="notice">
-<b>Caso não possua uma API KEY em sua conta, faça a requisição para suporte@ipag.com.br.</b>
+<b>If you don't have an API KEY in your account, make the request to support@ipag.com.br.</b>
 </aside>
 
-##Autenticação
+##Authentication
 
-A autenticação para a API ocorre através de [HTTP basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication). Você encontrará mais detalhes sobre Autenticação básica no [IETF RFC 2617](https://www.ietf.org/rfc/rfc2617.txt).
+The authentication for the API occurs through the  [HTTP basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication). 
+You'll find more details on Basic Authentication in [IETF RFC 2617](https://www.ietf.org/rfc/rfc2617.txt).
 
-Forneça seu login e sua chave secreta de API como o nome e senha de usuário de autenticação básico.
+Provide your login and your API secret key as the basic authentication user name and password.
 
-Toda a comunicação deve ser criptografada via SSL. O token de autenticação básica é reversível, no entanto, quando toda a comunicação é sobre HTTPS o contexto de segurança está completamente protegido. Um aplicativo deve enviar um HEADER HTTP Authorization contendo o nome de usuário e senha com cada solicitação.
+All communication must be encrypted via SSL. The basic authentication token is reversible, however, when all communication is over HTTPS the security context is completely protected. An application must send a HEADER HTTP Authorization containing the username and password with each request.
 
-Todas as chamadas de API devem ser feitas em HTTPS para garantir a segurança.
+All API calls must be made on HTTPS to ensure security.
 
-Basic Auth é trivial para usar de bibliotecas cliente HTTP. Ferramentas como cURL fornecem opções de linha de comando correspondentes.
+Basic Auth is trivial to use for HTTP client libraries. Tools such as cURL provide corresponding command-line options.
 
 <aside class="notice">
-<b>Você deve manter sua chave API segura não importa o quê! NÃO COMPARTILHE sua chave de API com ninguém, nem mesmo nos canais de suporte do iPag. Ninguém que represente de forma legítima o iPag nunca lhe pedirá sua chave da API!</b>
+<b>You should keep your API Key safe no matter what! DO NOT SHARE your API key with anyone, not even on iPag support channels. 
+No one who legitimately represents iPag will ask you for your API key!</b>
 </aside>
 ....

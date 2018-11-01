@@ -1,27 +1,27 @@
-# Boleto Parcelado
+# Parceled Billet
 
-## Campos adicionais para boleto parcelado
-Para enviar transação de boleto parcelado são necessários dois campos adicionais:
+## Additional fields for parcel billet
+Two additional fields are required to send split billet transaction:
 
-Parâmetro | size | type | Obrigatório | Descrição
+Parameter | size | type | Required | description
 --------- | ----- | ----- | ----------- | ---------
-boleto_parcelas | 128 | number | obrigatório | Número de parcelas que o boleto será parcelado.
-url_parcelamento | 256 | string | obrigatório | Url de retorno com os dados da conta (Conta iPag) que irá gerenciar as cobranças
+boleto_parcelas | 128 | number | yes | Number of installments that the billet will be parceled out.
+url_parcelamento | 256 | string | yes | Return url with the account data (iPag account) that will manage the charges
 
-## Dados de Retorno Boleto Parcelado
+## Return Data of Parceled Billet
 
-Parâmetro | Descrição
+Parameter | Description
 --------- | ---------
-valor | Valor total da conta
-num_pedido | Número do pedido
-quant_parcelas | Número de parcelas
-idconta | ID da conta vinculada no iPag
-primeiro_vencimento | Data de vencimento da primeira cobrança
-operadora | Método do Boleto Bancário (ex. boleto_itau)
+valor | Total Amount
+num_pedido | Order Number
+quant_parcelas | Amount of Installments
+idconta | Linked account ID on iPag
+primeiro_vencimento | Due date of first charge
+operadora | Banking Billet Method (ex. Boleto_itau)
 
-## Observações
+## Comments
 
-No boleto parcelado são utilizados as duas Urls de retorno
+In the parcelled billet, both return Urls are used
 
-* **url_retorno** (Url que retornará os pagamentos efetuados dos boletos)
-* **url_parcelamento** (Url que retornará os dados da conta criada no iPag)
+* **url_retorno** (Url that will return the payments made for billets)
+* **url_parcelamento** (Url that will return the account data created on iPag)

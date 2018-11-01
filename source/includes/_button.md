@@ -1,6 +1,6 @@
-# Checkout iPag
+# iPag Checkout
 
-> Checkout iPag (VPOS)
+> iPag Checkout (VPOS)
 
 ```php
 <form method='post' action='https://sandbox.ipag.com.br/vpos'>
@@ -10,10 +10,10 @@
     <input type='hidden' name='valor' value='1.00'/>
     <input type="hidden" name="plugin" value="html" />
     <input type="hidden" name="item_quant_1" value="1" />
-    <input type="hidden" name="item_descr_1" value="NOME_PRODUTO" />
+    <input type="hidden" name="item_descr_1" value="PRODUCT_NAME" />
     <input type="hidden" name="item_valor_1" value="1.00" />
     <input type="hidden" name="item_id_1" value="123" />
-    <input type="image" src="https://sandbox.ipag.com.br/images/comprar100px.png" name="submit" alt="Comprar" />
+    <input type="image" src="https://sandbox.ipag.com.br/images/comprar100px.png" name="submit" alt="Buy" />
 </form>
 ```
 
@@ -25,49 +25,50 @@
     <input type='hidden' name='valor' value='1.00'/>
     <input type="hidden" name="plugin" value="html" />
     <input type="hidden" name="item_quant_1" value="1" />
-    <input type="hidden" name="item_descr_1" value="NOME_PRODUTO" />
+    <input type="hidden" name="item_descr_1" value="PRODUCT_NAME" />
     <input type="hidden" name="item_valor_1" value="1.00" />
     <input type="hidden" name="item_id_1" value="123" />
-    <input type="image" src="https://sandbox.ipag.com.br/images/comprar100px.png" name="submit" alt="Comprar" />
+    <input type="image" src="https://sandbox.ipag.com.br/images/comprar100px.png" name="submit" alt="Buy" />
 </form>
 ```
 
 **Endpoint:**
 `POST /vpos`
 
-Com o **Checkout do iPag** você não precisa desenvolver seu próprio Checkout, apenas envie um POST com as informações abaixo para criar uma transação no iPag em seu nome.
 
-Para configurar o Checkout iPag acesse o
-**Painel iPag** > Configurações > Configurações do Checkout
+With **iPag Checkout** you don't need to develop your own Checkout, just submit a POST with the information below to create a transaction on iPag on your behalf.
 
-**Parâmetros do Checkout iPag**
+To set up Checkout iPag, go to
+**iPag Panel** Settings> Checkout Settings
 
-Parâmetro | Obrigatório | Descrição
+**iPag Checkout Parameters**
+
+Parameter | Required | description
 ----------|-------------|---------
-identificacao|sim|Identificação no iPag
-operacao|sim|Tipo da Operação (Pagamento)
-pedido|não|Número do pedido
-valor|sim|Valor que será cobrado do cliente
-plugin|sim|Parâmetro necessário para enviar um requisição ao Checkout iPag
-item_quant_1|não|Quantidade do Produto/Serviço
-item_descr_1|não|Descrição do Item
-item_valor_1|não|Valor unitário do Produto
-item_id_1|não|SKU do Produto
-url_retorno|não|Endpoint que o iPag irá enviar um POST quando há atualização de status da transação
-nome|não|Nome do Cliente
-documento|não|Documento do Cliente
-email|não|Email do Cliente
-fone|não|Telefone do Cliente
-endereco|não|Endereço do Cliente
-numero_endereco|não|Número do endereço do Cliente
-bairro|não|Bairro do Cliente
-complemento|não|Complemento do Cliente
-cidade|não|Cidade do Cliente
-estado|não|Estado do Cliente (formato:SP)
-cep|não|CEP do Cliente
-maxparcelas | não | Máximo de parcelas que pode ser dividio
-parcelasemjuros | não | Quantidade máxima de parcelamento sem juros
-valorminparcela | não | Valor mínimo da parcela
-jurosparcela | não | Juros que será aplicado para as parcelas
+identificacao|yes|IPag ID
+operacao|yes|Type of Operation (Payment)
+pedido|no|Order Number
+valor|yes|Amount to be charged to the customer
+plugin|yes|Parameter needed to send a request to Checkout iPag
+item_quant_1|no|Quantity of Product / Service
+item_descr_1|no|Item Description
+item_valor_1|no|Product unit value
+item_id_1|no|Product SKU
+url_retorno|no|Endpoint that iPag will send a POST when there is an update status of the transaction
+nome|no|Customer Name
+documento|no|Customer Document
+email|no|Customer Email
+fone|no|Customer phone
+endereco|no|Customer address
+numero_endereco|no|Customer address number 
+bairro|no|Customer neighborhood
+complemento|no|Customer complement
+cidade|no|Customer city
+estado|no|Customer state/province
+cep|no|Customer zipcode
+maxparcelas | no | Maximum installment number
+parcelasemjuros | no | Maximum installment payment without interest
+valorminparcela | no | Minimum installment amount
+jurosparcela | no |Interest to be applied to installments
 
 

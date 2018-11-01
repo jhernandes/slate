@@ -1,5 +1,5 @@
 ---
-title: iPag Documentação Online
+title: iPag Online Documentation
 
 language_tabs:
   - php: PHP
@@ -30,7 +30,7 @@ includes:
 search: true
 ---
 
-# Introdução
+# Introduction
 
 ```php
  _          _ _
@@ -44,8 +44,9 @@ __      _____  _ __| | __| |
   \_/\_/ \___/|_|  |_|\__,_|
 ```
 
-Olá seja bem-vindo!
+Hello, welcome!
 
-Este documento explica como integrar sua Loja (E-Commerce) com o Gateway de Pagamentos iPag.
+This document explains how to integrate your E-commerce Store with iPag Payment Gateway.
 
-Nós estamos melhorando constantemente este documento e agradecemos qualquer sugestão enviada. Você pode mandar uma mensagem para suporte@ipag.com.br com suas perguntas e sugestões de como melhorá-lo.
+We are constantly improving this document and appreciate any suggestions sent. You can send a message to suporte@ipag.com.br with your questions and suggestions on how to improve it.
+

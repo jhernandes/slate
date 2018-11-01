@@ -1,20 +1,20 @@
 # Exemplos
 
-HTMLs de Exemplos
+Example HTMLs
 
-Endpoint Produção: //Requisitar para o iPag em atedimento@ipag.com.br
+ Production Endpoint: //Request to iPag on atedimento@ipag.com.br
 
-Endpoint Sandbox
+Sandbox Endpoint 
 
 `https://sandbox.ipag.com.br/`
 
-## Submeter pagamento
+## Submit Payment
 
 **Endpoint:**
 `POST /service/payment`
 
 ```php
-> Exemplo de Submissão via PHP SDK
+> Submission Example via PHP SDK
 
 <?php
 // VIA IPAG-SDK-PHP
@@ -86,16 +86,16 @@ try {
 }
 ```
 <aside class="notice">
-    Lembre, isto é apenas um exemplo para fazer testes de submissão de pagamento.
+    Remember, this is just an example to do payment submission testing.
 </aside>
 
-## Consultar Pagamento
+## Consult Payment
 
 **Endpoint:**
 `POST /service/consult`
 
 ```php
-> Exemplo de Consulta PHP SDK
+> Consult Example PHP SDK
 
 <?php
 // VIA IPAG-SDK-PHP
@@ -115,29 +115,29 @@ try {
 }
 ```
 
-Parâmetro | size | type | Obrigatório | Descrição
+Parameter | size | type | Required | description
 --------- | ----- | ----- | ----------- | ---------
-identificacao | 60 | string | sim | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
-transId | 255 | string | sim/não | Código identificação da transação.
-numPedido | 20 | string | não/sim | Código identificação do pedido.
-retorno_tipo | 20 | string | não | `xml`
-url_retorno | 255 | string | não | Url da sua loja.
+identificacao | 60 | string | yes | Identification code of the establishment in iPag (panel access login)
+transId | 255 | string | yes/no | Transaction ID code.
+numPedido | 20 | string | no/yes | Order identification code.
+retorno_tipo | 20 | string | no | `xml`
+url_retorno | 255 | string | no | Your store URL.
 
 <aside class="notice">
-    Deve ser enviado pelo menos um dos campos: `transId` ou `numPedido`
+    At least one of the fields must be sent: `transId` or` numPedido`
 </aside>
 <aside class="notice">
-    Lembre, isto é apenas um exemplo para fazer testes de consulta de pagamento.
+   Remember, this is just an example to do payment query testing.
 </aside>
 
 
-## Capturar Pagamento
+## Capture Payment
 
 **Endpoint:**
 `POST /service/capture`
 
 ```php
-> Exemplo de Captura PHP SDK
+> Capture Example via PHP SDK
 
 <?php
 // VIA IPAG-SDK-PHP
@@ -157,23 +157,23 @@ try {
 }
 ```
 
-Parâmetro | size | type | Obrigatório | Descrição
+Parameter | size | type | Required | description
 --------- | ----- | ----- | ----------- | ---------
-identificacao | 60 | string | sim | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
-transId | 255 | string | sim | Código identificação da transação.
-url_retorno | 255 | string | sim |`xml` ou  Url da sua loja.
+identificacao | 60 | string | yes | Identification code of the establishment in iPag (panel access login)
+transId | 255 | string | yes | Transaction ID code.
+url_retorno | 255 | string | yes |`xml` or Url from your store.
 
 <aside class="notice">
-    Lembre, isto é apenas um exemplo para fazer testes de captura de pagamento.
+  Remember, this is just an example to take payment catch tests.
 </aside>
 
-## Cancelar Pagamento
+## Cancel Payment
 
 **Endpoint:**
 `POST /service/cancel`
 
 ```php
-> Exemplo de Cancelamento PHP SDK
+> Cancel Example via PHP SDK
 
 <?php
 // VIA IPAG-SDK-PHP
@@ -193,12 +193,12 @@ try {
 }
 ```
 
-Parâmetro | size | type | Obrigatório | Descrição
+Parameter | size | type | Required | description
 --------- | ----- | ----- | ----------- | ---------
-identificacao | 60 | string | obrigatório | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
-transId | 255 | string | obrigatório | Código identificação da transação.
-url_retorno | 255 | string | obrigatório | Pode ser `xml` ou uma Url da sua loja.
+identificacao | 60 | string | yes | Identification code of the establishment in iPag (panel access login)
+transId | 255 | string | yes | Transaction ID code.
+url_retorno | 255 | string | yes | It can be `xml` or a url from your store.
 
 <aside class="notice">
-    Lembre, isto é apenas um exemplo para fazer testes de cancelamento de pagamento.
+   Remember, this is just an example to make payment cancellation tests.
 </aside>

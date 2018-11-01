@@ -1,10 +1,10 @@
-#Integração Assinaturas
+#Signature Integration
 
-##Consultar Assinatura
+##Consult Signature
 
 **`GET`** `/service/v1?ctrl=assinatura&action=consultar&id_assinatura=<id_assinatura>`
 
-> Exemplo para Consultar Assinatura
+> Example to Consult Signature
 
 ```shell
 curl -X GET \
@@ -33,14 +33,14 @@ $result = file_get_contents($url, null, $context);
 print_r($result);
 ```
 
-Parâmetro | valor  | type  | Obrigatório | Descrição
+Parameter | value | type | Required | description
 --------- | ----- | ----- | ----------- | ---------
-ctrl      | assinatura | string| sim | controlador selecionado
-action    | consultar | string| sim | ação selecionado
-id_assinatura | Ex.: 1000 | string| sim/não | ID de referência da assinatura (obrigatório caso não tenha profile_id)
-profile_id      | Ex.: 99282 | string| não | ID de referência da assinatura, criado pelo usuário (obrigatório caso não o tenha id_assinatura)
+ctrl | assinatura | string | yes | selected controller
+action | consultar | string | yes | selected action
+id_assinatura | Ex .: 1000 | string | yes / no | Subscription reference ID (required if you do not have profile_id)
+profile_id | Eg .: 99282 | string | not | Reference id of the signature, created by the user (mandatory if you do not have signature_id)
 
-##Resposta - Consultar Assinatura (XML)
+##Response - Consult Signature
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -82,49 +82,50 @@ profile_id      | Ex.: 99282 | string| não | ID de referência da assinatura, c
 </retorno>
 ```
 
-Parâmetro | Descrição
+
+Parameter | description
 --------- | ---------
 retorno | *Container*
-code | Código de retorno (000 = sucesso)
-message | Mensagem de retorno
-id | ID da assinatura criado pelo iPag
-profile_id | ID da assinatura criado pelo usuário
-is_active | Status atual da assinatura (1 = ativo, 0 = inativo)
-description | Descrição da assinatura
-value | Valor recorrente cobrado no período
-billing_date | Dia de vencimento
-frequency | Frequência que ocorrem as cobranças
-interval | Intevalo de tempo que ocorrem as cobranças (day, week, month)
-token | Token de cartão vinculado a assinatura
+code | Return code (000 = success)
+message | Return message
+id | Signature ID created by iPag
+profile_id | User-created signature ID
+is_active | Current signature status (1 = active, 0 = inactive)
+description | Subscription Description
+value | Recurring amount charged in the period
+billing_date | Due date
+frequency | Frequency of charges
+interval | Time difference for collections (day, week, month)
+token | Signed token card token
 credit_card | *Container*
-bin | Bin do cartão de crédito
-last4 | Last4 do cartão de crédito
-expiry | Data de validade do cartão de crédito
-brand | Operadora do cartão
+bin | Credit Card Bin
+last4 | Last4 credit card
+expiry | Credit card expiration date
+brand | Card Operator
 billing | *Container*
-payment_1* | *Container* (Poderá repetir)
-number | Número do pagamento
-expiry_date | Vencimento do pagamento
-value | Valor do pagamento
-is_payed | 1 = Pago, 0 = Não pago
-payed_value | Valor Pago
-payed_date | Data que foi realizado o pagamento
-description | Descrição do pagamento
+payment_1 * | *Container* (Can be repeated)
+number | Payment number
+expiry_date | Payment Due
+value | Payment Amount
+is_payed | 1 = Payment, 0 = Not paid
+payed_value | Amount paid
+payed_date | Date payment was made
+description | Payment Description
 transaction | *Container*
-installment_number | Número de parcelas escolhido no pagamento
-transaction_id | ID da transação vinculada no iPag
-payed_value | Valor pago na transação
-payed_date | Data que foi realizada a transação
+installment_number | Number of installments chosen in payment
+transaction_id | Paid transaction ID on iPag
+payed_value | Amount paid on transaction
+payed_date | Date the transaction was performed
 
-<aside class="notice">
-    * Para cada pagamento realizado na assinatura terá um container <b>payment_</b>
+<aside class = "notice">
+    * For each payment made on the subscription will have a container <b> payment _ </b>
 </aside>
 
-##Ativar Assinatura
+## Activate Signature
 
 `POST /service/v1`
 
-> Exemplo para Ativar Assinatura
+> Example to Activate Sigature
 
 ```shell
 curl --include --header "accept: application/xml" \
@@ -164,14 +165,14 @@ if ($err) {
 }
 ```
 
-Parâmetro | valor  | type  | Obrigatório | Descrição
+Parameter | value | type | Required | description
 --------- | ----- | ----- | ----------- | ---------
-ctrl      | assinatura | string| sim | controlador selecionado
-action      | ativar | string| sim | ação selecionado
-id_assinatura | Ex.: 1000 | string| sim/não | ID de referência da assinatura (obrigatório caso não tenha profile_id)
-profile_id      | Ex.: 99282 | string| não | ID de referência da assinatura, criado pelo usuário (obrigatório caso não tenha id_assinatura)
+ctrl | assinatura | string | yes | selected controller
+action | ativar | string | yes | selected action
+id_assinatura | Ex .: 1000 | string | yes / no | Subscription reference ID (required if you do not have profile_id)
+profile_id | Eg .: 99282 | string | not | Subscription reference ID, created by the user (mandatory if you do not have an id]
 
-##Resposta - Ativar Assinatura (XML)
+##Response - Activate Signature (XML)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -196,31 +197,31 @@ profile_id      | Ex.: 99282 | string| não | ID de referência da assinatura, c
 </retorno>
 ```
 
-Parâmetro | Descrição
+Parameter | description
 --------- | ---------
 retorno | *Container*
-code | Código de retorno (000 = sucesso)
-message | Mensagem de retorno
-id | ID da assinatura criado pelo iPag
-profile_id | ID da assinatura criado pelo usuário
-is_active | Status atual da assinatura (1 = ativo, 0 = inativo)
-description | Descrição da assinatura
-value | Valor recorrente cobrado no período
-billing_date | Dia de vencimento
-frequency | Frequência que ocorrem as cobranças
-interval | Intevalo de tempo que ocorrem as cobranças (day, week, month)
-token | Token de cartão vinculado a assinatura
+code | Return code (000 = success)
+message | Return message
+id | Signature ID created by iPag
+profile_id | User-created signature ID
+is_active | Current signature status (1 = active, 0 = inactive)
+description | Subscription Description
+value | Recurring amount charged in the period
+billing_date | Due date
+frequency | Frequency of charges
+interval | Time difference for collections (day, week, month)
+token | Signed token card token
 credit_card | *Container*
-bin | Bin do cartão de crédito
-last4 | Last4 do cartão de crédito
-expiry | Data de validade do cartão de crédito
-brand | Operadora do cartão
+bin | Credit Card Bin
+last4 | Last4 credit card
+expiry | Credit card expiration date
+brand | Card Operator
 
-##Inativar Assinatura
+## Inactivate Signature
 
 `POST /service/v1`
 
-> Exemplo para Inativar Assinatura
+> Example to Inactivate Signature
 
 ```shell
 curl --include --header "accept: application/xml" \
@@ -260,14 +261,15 @@ if ($err) {
 }
 ```
 
-Parâmetro | valor  | type  | Obrigatório | Descrição
+Parameter | value | type | Required | description
 --------- | ----- | ----- | ----------- | ---------
-ctrl      | assinatura | string| sim | controlador selecionado
-action      | inativar | string| sim | ação selecionado
-id_assinatura | Ex.: 1000 | string| sim/não | ID de referência da assinatura (obrigatório caso não tenha profile_id)
-profile_id      | Ex.: 99282 | string| não | ID de referência da assinatura, criado pelo usuário (obrigatório caso não tenha id_assinatura)
+ctrl | assinatura | string | yes | selected controller
+action | inativar | string | yes | selected action
+id_assinatura | Ex .: 1000 | string | yes / no | Subscription reference ID (required if you do not have profile_id)
+profile_id | Eg .: 99282 | string | not | Subscription reference ID, created by the user (mandatory if you do not have an id]
 
-##Resposta - Inativar Assinatura (XML)
+
+## Response - Inactivate Signature (XML)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -292,31 +294,31 @@ profile_id      | Ex.: 99282 | string| não | ID de referência da assinatura, c
 </retorno>
 ```
 
-Parâmetro | Descrição
+Parameter | description
 --------- | ---------
 retorno | *Container*
-code | Código de retorno (000 = sucesso)
-message | Mensagem de retorno
-id | ID da assinatura criado pelo iPag
-profile_id | ID da assinatura criado pelo usuário
-is_active | Status atual da assinatura (1 = ativo, 0 = inativo)
-description | Descrição da assinatura
-value | Valor recorrente cobrado no período
-billing_date | Dia de vencimento
-frequency | Frequência que ocorrem as cobranças
-interval | Intevalo de tempo que ocorrem as cobranças (day, week, month)
-token | Token de cartão vinculado a assinatura
+code | Return code (000 = success)
+message | Return message
+id | Signature ID created by iPag
+profile_id | User-created signature ID
+is_active | Current signature status (1 = active, 0 = inactive)
+description | Subscription Description
+value | Recurring amount charged in the period
+billing_date | Due date
+frequency | Frequency of charges
+interval | Time difference for collections (day, week, month)
+token | Signed token card token
 credit_card | *Container*
-bin | Bin do cartão de crédito
-last4 | Last4 do cartão de crédito
-expiry | Data de validade do cartão de crédito
-brand | Operadora do cartão
+bin | Credit Card Bin
+last4 | Last4 credit card
+expiry | Credit card expiration date
+brand | Card Operator
 
-##Alterar Data de Vencimento da Assinatura
+## Change Subscription Expiration Date
 
 `POST /service/v1`
 
-> Exemplo para Alterar Data de Vencimento da Assinatura
+>Example to Change Subscription Due Date
 
 ```shell
 curl --include --header "accept: application/xml" \
@@ -355,16 +357,15 @@ if ($err) {
   echo $response;
 }
 ```
-
-Parâmetro | valor  | type  | Obrigatório | Descrição
+Parameter | value | type | Required | description
 --------- | ----- | ----- | ----------- | ---------
-ctrl      | assinatura | string| sim | controlador selecionado
-action      | vencto | string| sim | ação selecionada
-vencto      | Ex.: 2017-02-10 | string| sim | Nova data de vencimento da assinatura (formato = yyyy-mm-dd)
-id_assinatura | Ex.: 1000 | string| sim/não | ID de referência da assinatura (obrigatório caso não tenha profile_id)
-profile_id      | Ex.: 99282 | string| não | ID de referência da assinatura, criado pelo usuário (obrigatório caso não tenha id_assinatura)
+ctrl | assinatura | string | yes | selected controller
+action | vencto | string | yes | selected action
+vencto | Ex .: 2017-02-10 | string | yes | New signature expiration date (format = yyyy-mm-dd)
+id_assinatura | Ex .: 1000 | string | yes / no | Subscription reference ID (required if you do not have profile_id)
+profile_id | Eg .: 99282 | string | not | Subscription reference ID, created by the user (mandatory if you do not have an id]
 
-##Resposta - Alterar Data de Vencimento da Assinatura (XML)
+## Reply - Change Subscription Expiration Date (XML)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -390,27 +391,27 @@ profile_id      | Ex.: 99282 | string| não | ID de referência da assinatura, c
 
 ```
 
-Parâmetro | Descrição
+Parameter | description
 --------- | ---------
 retorno | *Container*
-code | Código de retorno (000 = sucesso)
-message | Mensagem de retorno
-id | ID da assinatura criado pelo iPag
-profile_id | ID da assinatura criado pelo usuário
-is_active | Status atual da assinatura (1 = ativo, 0 = inativo)
-description | Descrição da assinatura
-value | Valor recorrente cobrado no período
-billing_date | Dia de vencimento
-frequency | Frequência que ocorrem as cobranças
-interval | Intevalo de tempo que ocorrem as cobranças (day, week, month)
-token | Token de cartão vinculado a assinatura
+code | Return code (000 = success)
+message | Return message
+id | Signature ID created by iPag
+profile_id | User-created signature ID
+is_active | Current signature status (1 = active, 0 = inactive)
+description | Subscription Description
+value | Recurring amount charged in the period
+billing_date | Due date
+frequency | Frequency of charges
+interval | Time difference for collections (day, week, month)
+token | Signed token card token
 credit_card | *Container*
-bin | Bin do cartão de crédito
-last4 | Last4 do cartão de crédito
-expiry | Data de validade do cartão de crédito
-brand | Operadora do cartão
+bin | Credit Card Bin
+last4 | Last4 credit card
+expiry | Credit card expiration date
+brand | Card Operator
 
-##Alterar Valor da Assinatura
+## Change Subscription Value
 
 `POST /service/v1`
 
@@ -454,15 +455,15 @@ if ($err) {
 }
 ```
 
-Parâmetro | valor  | type  | Obrigatório | Descrição
+Parameter | value | type | Required | description
 --------- | ----- | ----- | ----------- | ---------
-ctrl      | assinatura | string| sim | controlador selecionado
-action      | valor | string| sim | ação selecionado
-valor      | Ex.: 1.99 | string| sim | Valor a ser alterado ( formato 1.00 )
-id_assinatura | Ex.: 1000 | string| sim/não | ID de referência da assinatura (obrigatório caso não tenha profile_id)
-profile_id      | Ex.: 99282 | string| não | ID de referência da assinatura, criado pelo usuário (obrigatório caso não tenha id_assinatura)
+ctrl | assinatura | string | yes | selected controller
+action | valor | string | yes | selected action
+value | Ex .: 1.99 | string | yes | Amount to be changed (1.00 format)
+id_assinatura | Ex .: 1000 | string | yes / no | Subscription reference ID (required if you do not have profile_id)
+profile_id | Eg .: 99282 | string | not | Subscription reference ID, created by the user (mandatory if you do not have an id]
 
-##Resposta - Alterar Valor da Assinatura (XML)
+## Response - Change Signature Value (XML)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -487,31 +488,31 @@ profile_id      | Ex.: 99282 | string| não | ID de referência da assinatura, c
 </retorno>
 ```
 
-Parâmetro | Descrição
+Parameter | description
 --------- | ---------
 retorno | *Container*
-code | Código de retorno (000 = sucesso)
-message | Mensagem de retorno
-id | ID da assinatura criado pelo iPag
-profile_id | ID da assinatura criado pelo usuário
-is_active | Status atual da assinatura (1 = ativo, 0 = inativo)
-description | Descrição da assinatura
-value | Valor recorrente cobrado no período
-billing_date | Dia de vencimento
-frequency | Frequência que ocorrem as cobranças
-interval | Intevalo de tempo que ocorrem as cobranças (day, week, month)
-token | Token de cartão vinculado a assinatura
+code | Return code (000 = success)
+message | Return message
+id | Signature ID created by iPag
+profile_id | User-created signature ID
+is_active | Current signature status (1 = active, 0 = inactive)
+description | Subscription Description
+value | Recurring amount charged in the period
+billing_date | Due date
+frequency | Frequency of charges
+interval | Time difference for collections (day, week, month)
+token | Signed token card token
 credit_card | *Container*
-bin | Bin do cartão de crédito
-last4 | Last4 do cartão de crédito
-expiry | Data de validade do cartão de crédito
-brand | Operadora do cartão
+bin | Credit Card Bin
+last4 | Last4 credit card
+expiry | Credit card expiration date
+brand | Card Operator
 
-##Gerar Token Único para Assinatura
+## Generate Unique Token for Signature
 
 `POST /service/v1`
 
-> Exemplo para Gerar Token Único para Assinatura
+> Example to Generate Unique Token for Signature
 
 ```shell
 curl --include --header "accept: application/xml" \
@@ -552,16 +553,16 @@ if ($err) {
 }
 ```
 
-Parâmetro | valor  | type  | Obrigatório | Descrição
+Parameter | value | type | Required | description
 --------- | ----- | ----- | ----------- | ---------
-ctrl      | token | string| sim | controlador selecionado
-action    | novo | string| sim | ação selecionado
-numero_cartao | Ex.:4024007109760958| string| sim | Número do cartão
-nome_cartao   | Ex.: fulano | string| sim | Nome do portador do cartão
-mes_cartao    | Ex.: 10 | string| sim | Mês de vencimento do cartão
-ano_cartao    | Ex.: 2021 | string| sim | Ano de vencimento do cartão
+ctrl | token | string | yes | selected controller
+action | novo | string | yes | selected action
+numero_cartao | Ex.: 4024007109760958 | string | yes | card number
+nome_cartao | Ex. string | yes | Card holder name
+mes_cartao | Ex .: 10 | string | yes | Card winning month
+ano_cartao | Ex .: 2021 | string | yes | Card expiration date
 
-##Resposta - Gerar Token Único para Assinatura (XML)
+## Reply - Generate Unique Token for Signature (XML)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -572,19 +573,19 @@ ano_cartao    | Ex.: 2021 | string| sim | Ano de vencimento do cartão
 </retorno>
 ```
 
-Parâmetro | Descrição
+Parameter | description
 --------- | ---------
 retorno | *Container*
-code | Código de retorno (000 = sucesso)
-message | Mensagem de retorno
-token | Token único do cartão
+code | Return code (000 = success)
+message | Return message
+token | Single Card Token
 
 
-##Alterar Token da Assinatura
+##Change Subscription Token
 
 `POST /service/v1`
 
-> Exemplo para Alterar Token da Assinatura
+> Example to Change Subscription Token
 
 ```shell
 curl --include --header "accept: application/xml" \
@@ -624,15 +625,15 @@ if ($err) {
 }
 ```
 
-Parâmetro | valor  | type  | Obrigatório | Descrição
+Parameter | value | type | Required | description
 --------- | ----- | ----- | ----------- | ---------
-ctrl      | assinatura | string| sim | controlador selecionado
-action      | token | string| sim | ação selecionado
-token      | Ex.: fa59-7b796cff-ed8b9bca-f8600ac9-1328 | string| sim | Token de um cartão gerado previamente
-id_assinatura | Ex.: 1000 | string| sim/não | ID de referência da assinatura (obrigatório caso não tenha profile_id)
-profile_id      | Ex.: 99282 | string| não | ID de referência da assinatura, criado pelo usuário (obrigatório caso não tenha id_assinatura)
+ctrl | assinatura | string | yes | selected controller
+action | token | string | yes | selected action
+token | Ex .: fa59-7b796cff-ed8b9bca-f8600ac9-1328 | string | yes | Previously generated card Token
+id_assinatura | Ex .: 1000 | string | yes / no | Subscription reference ID (required if you do not have profile_id)
+profile_id | Eg .: 99282 | string | not | Subscription reference ID, created by the user (mandatory if you do not have an id]
 
-##Resposta - Alterar Token da Assinatura (XML)
+## Response - Change Signature Token (XML)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -657,31 +658,32 @@ profile_id      | Ex.: 99282 | string| não | ID de referência da assinatura, c
 </retorno>
 ```
 
-Parâmetro | Descrição
+
+Parameter | description
 --------- | ---------
 retorno | *Container*
-code | Código de retorno (000 = sucesso)
-message | Mensagem de retorno
-id | ID da assinatura criado pelo iPag
-profile_id | ID da assinatura criado pelo usuário
-is_active | Status atual da assinatura (1 = ativo, 0 = inativo)
-description | Descrição da assinatura
-value | Valor recorrente cobrado no período
-billing_date | Dia de vencimento
-frequency | Frequência que ocorrem as cobranças
-interval | Intevalo de tempo que ocorrem as cobranças (day, week, month)
-token | Token de cartão vinculado a assinatura
+code | Return code (000 = success)
+message | Return message
+id | Signature ID created by iPag
+profile_id | User-created signature ID
+is_active | Current signature status (1 = active, 0 = inactive)
+description | Subscription Description
+value | Recurring amount charged in the period
+billing_date | Due date
+frequency | Frequency of charges
+interval | Time difference for collections (day, week, month)
+token | Signed token card token
 credit_card | *Container*
-bin | Bin do cartão de crédito
-last4 | Last4 do cartão de crédito
-expiry | Data de validade do cartão de crédito
-brand | Operadora do cartão
+bin | Credit Card Bin
+last4 | Last4 credit card
+expiry | Credit card expiration date
+brand | Card Operator
 
-##Alterar Valor e/ou Vencimento de uma Parcela da Assinatura
+## Change Amount and / or Expiry of a Subscription Installment
 
 `POST /service/v1`
 
-> Exemplo para Alterar Valor e/ou Vencimento de uma Parcela da Assinatura
+> Example to Change Amount and / or Expiry of a Subscription Installment
 
 ```shell
 curl --include --header "accept: application/xml" \
@@ -721,17 +723,17 @@ if ($err) {
 }
 ```
 
-Parâmetro | valor  | type  | Obrigatório | Descrição
+Parameter | value | type | Required | description
 --------- | ----- | ----- | ----------- | ---------
-ctrl      | assinatura | string| sim | controlador selecionado
-action    | parcela | string| sim | ação selecionada
-parcela | Ex.: 1 | int | sim | Número da Parcela a ser alterada
-valor     | Ex.: 19.99 | double | sim/não | Valor da Parcela
-vencto | Ex.: 2017-12-25 (AAAA-MM-DD) | string | sim/não | Data de cobrança da Parcela
-profile_id | Ex.: 99282 | string | não | ID de referência da assinatura, criado pelo usuário (obrigatório caso não tenha id_assinatura)
-id_assinatura | Ex.: 1000 | int | não/sim | ID de referência da assinatura, criado pelo iPag (obrigatório caso não tenha profile_id)
+ctrl | assinatura | string | yes | selected controller
+action | parcela | string | yes | selected action
+parcela | Ex: 1 | int | yes | Installment number to be changed
+valor | Ex .: 19.99 | double | yes / no | Installment Value
+vencto | Ex .: 2017-12-25 (YYYY-MM-DD) | string | yes / no | Date of payment of the installment
+profile_id | Eg .: 99282 | string | no | Subscription reference ID, created by the user (mandatory if you do not have an id]
+id_assinatura | Ex .: 1000 | int | no / yes | Subscription reference ID created by iPag (required if you do not have profile_id)
 
-##Resposta - Alterar Valor e/ou Vencimento de uma Parcela da Assinatura (XML)
+## Response - Change Value and / or Expiry of a Subscription Installment (XML)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -783,58 +785,59 @@ id_assinatura | Ex.: 1000 | int | não/sim | ID de referência da assinatura, cr
 </retorno>
 ```
 
-Parâmetro | Descrição
+
+Parameter | description
 --------- | ---------
-retorno | *Container*
-code | Código de retorno (000 = sucesso)
-message | Mensagem de retorno
-id | ID da assinatura criado pelo iPag
-profile_id | ID da assinatura criado pelo usuário
-is_active | Status atual da assinatura (1 = ativo, 0 = inativo)
-description | Descrição da assinatura
-value | Valor recorrente cobrado no período
-billing_date | Dia de vencimento
-frequency | Frequência que ocorrem as cobranças
-interval | Intevalo de tempo que ocorrem as cobranças (day, week, month)
-token | Token de cartão vinculado a assinatura
+retotno | *Container*
+codigo | Return code (000 = success)
+message | Return message
+id | Signature ID created by iPag
+profile_id | User-created signature ID
+is_active | Current signature status (1 = active, 0 = inactive)
+description | Subscription Description
+value | Recurring amount charged in the period
+billing_date | Due date
+frequency | Frequency of charges
+interval | Time difference for collections (day, week, month)
+token | Signed token card token
 credit_card | *Container*
-bin | Bin do cartão de crédito
-last4 | Last4 do cartão de crédito
-expiry | Data de validade do cartão de crédito
-brand | Operadora do cartão
+bin | Credit Card Bin
+last4 | Last4 credit card
+expiry | Credit card expiration date
+brand | Card Operator
 billing | *Container*
-payment_1* | *Container* (Poderá repetir)
-number | Número do pagamento
-expiry_date | Vencimento do pagamento
-value | Valor do pagamento
-is_payed | 1 = Pago, 0 = Não pago
-payed_value | Valor Pago
-payed_date | Data que foi realizado o pagamento
-description | Descrição do pagamento
+payment_1 * | *Container* (Can be repeated)
+number | Payment number
+expiry_date | Payment Due
+value | Payment Amount
+is_payed | 1 = Payment, 0 = Not paid
+payed_value | Amount paid
+payed_date | Date payment was made
+description | Payment Description
 transaction | *Container*
-installment_number | Número de parcelas escolhido no pagamento
-transaction_id | ID da transação vinculada no iPag
-payed_value | Valor pago na transação
-payed_date | Data que foi realizada a transação
+installment_number | Number of installments chosen in payment
+transaction_id | Paid transaction ID on iPag
+payed_value | Amount paid on transaction
+payed_date | Date the transaction was performed
 
 <aside class="notice">
-    * Para cada pagamento/parcela na assinatura terá um container <b>payment_</b>
+   * For each payment / installment in the subscription will have a container <b> payment _ </b>
 </aside>
 
-##Tabela de Erros (Integração Assinatura)
+## Error Table (Signature Integration)
 
-HTTP Code | Code | Mensagem
-----| ----| ---------
-404 | 001 | Assinatura não encontrada.
+HTTP Code | Code | Message
+---- | ---- | ---------
+404 | 001 | Signature not found.
 
-406 | 002 | Valor não informado na requisição.
-406 | 002 | Número da parcela não informado na requisição.
-406 | 002 | Parcela não encontrada.
+406 | 002 | Value not informed in requisition.
+406 | 002 | Portion number not entered in requisition.
+406 | 002 | Portion not found.
 
-406 | 003 | Data não informada ou não está no formato yyyy-mm-dd.
-404 | 004 | Ação não é válida.
-406 | 005 | Token não é válido.
-406 | 006 | id_assinatura ou profile_id não informado na requisição.
-406 | 096 | Número de cartão inválido.
-406 | 095 | Cartão vencido ou data informada inválida.
+406 | 003 | Date not informed or not in yyyy-mm-dd format.
+404 | 004 | Action is not valid.
+406 | 005 | Token is not valid.
+406 | 006 | id_name or profile_id not entered in the request.
+406 | 096 | Invalid card number.
+406 | 095 | Overdue card or invalid informed date.
 500 | 098 | Internal Server Error

@@ -1,10 +1,10 @@
-# (Marketplace) - Split de Transações
+# (Marketplace) - Transaction Split
 
-## Enviando um Request de Split
+## Submitting a Split Request
 
 `POST /service/v1`
 
-> Exemplo de integração
+> Integration example
 
 ```shell
 curl -X POST \
@@ -29,14 +29,14 @@ curl -X POST \
 }'
 ```
 
-### Os campos abaixo devem ser enviados como parâmetros na URL
+### The fields below must be sent as parameters in the URL
 
-Campo |  tipo | Obrigatório | Descrição
-------| ----- | ----------- | ---------
+Field | type | Required | description
+------ | ----- | ----------- | ---------
 ctrl | string | sim | **zoopsplit**
-tid  | string | sim | TID da transação no iPag (transId)
+tid | string | sim | Transaction TID on iPag (transId)
 
-> O JSON abaixo deve ser enviado no corpo do Request:
+> The JSON below must be sent in the body of the Request:
 
 ```json
 {
@@ -57,17 +57,17 @@ tid  | string | sim | TID da transação no iPag (transId)
 }
 ```
 
-### Campos do JSON de Split
+### Split's JSON fields
 
-Campo |  tipo | Obrigatório | Descrição
-------| ----- | ----------- | ---------
+Field | type | Required | description
+------ | ----- | ----------- | ---------
 split | container | sim | Container
-seller_id  | string | sim | ID do vendedor
-amount | double | sim | Valor absoluto que será repassado ao vendedor
+seller_id | string | sim | Seller ID
+amount | double | sim | Absolute value that will be passed on to the seller
 
-## Resposta de um Split com Sucesso
+## Successful Split Response
 
-> Resposta de um Split com Sucesso
+> Successful Split Response
 
 ```json
 [
@@ -93,10 +93,10 @@ amount | double | sim | Valor absoluto que será repassado ao vendedor
 ```
 
 
-## Consultar Transação de Split
+## Query Split Transaction
 
-<aside class="notice">
-  Você pode realizar uma consulta antes de enviar um Split, desta forma você terá o valor líquido total disponível para realizar o Split.
+<aside class = "notice">
+   You can perform a query before sending a Split, this way you will have the total net value available to perform Split.
 </aside>
 
 `GET /service/v1`
@@ -108,16 +108,16 @@ curl -X GET \
   -H 'content-type: application/json'
 ```
 
-### Os campos abaixo devem ser enviados como parâmetros na URL
+### The fields below must be sent as parameters in the URL
 
-Campo |  tipo | Obrigatório | Descrição
-------| ----- | ----------- | ---------
+Field | type | Required | description
+------ | ----- | ----------- | ---------
 ctrl | string | sim | **zoopsplitquery**
-tid  | string | sim | TID da transação no iPag (transId)
+tid | string | sim | Transaction TID on iPag (transId)
 
-### Resposta da consulta de Split
+### Split query response
 
-> Resposta da consulta de Split
+> Split query response
 
 ```json
 {

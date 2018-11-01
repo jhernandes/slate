@@ -1,13 +1,13 @@
 # IPAG SDK PHP
 
-[Link para o SDK PHP](https://github.com/jhernandes/ipag-sdk-php)
+[Link to PHP SDK](https://github.com/jhernandes/ipag-sdk-php)
 
-## Dependências
+## Dependency
 * PHP >= 5.6
 
-## Instalação
+## Installation
 
-Se já possui um arquivo `composer.json`, basta adicionar a seguinte dependência ao seu projeto:
+If you already have a `composer.json` file, simply add the following dependency to your project:
 
 ```json
 "require": {
@@ -15,13 +15,13 @@ Se já possui um arquivo `composer.json`, basta adicionar a seguinte dependênci
 }
 ```
 
-Com a dependência adicionada ao `composer.json`, basta executar:
+With the dependency added to `composer.json`, just execute:
 
 ```
 composer install
 ```
 
-Alternativamente, você pode executar diretamente em seu terminal:
+Alternatively, you can run directly on your terminal:
 
 ```
 composer require "jhernandes/ipag-sdk-php"

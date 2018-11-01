@@ -1,19 +1,18 @@
 # ipag.js
 
-O ipag.js ajuda na manipulação dos dados sensíveis do cartão de crédito, criando transações mais seguras diretamente pelo cliente (Evita de enviar dados sensíveis do cartão para o servidor da Loja).
+Ipag.js helps handling sensitive credit card data, creating safer transactions directly by the customer (avoids sending sensitive data from the card to the Store server).
+## Including ipag.js
 
-## Incluindo o ipag.js
+Include the script before de **body** closing tag
 
-Inclua o script antes do fechamendo da tag **body**
-
-[Ver Script na aba HTML](?html#ipag-js)
+[See Script on HTML Tab](?html#ipag-js)
 
 ```html
-<!-- Inclua o script antes do fechamento da tag </body> -->
+<!-- Include script before tag close </ body> -->
 <script type="text/javascript" src="https://sandbox.ipag.com.br/js/dist/ipag.js"></script>
 ```
 
-## Recuperando seu SessionToken
+## Retrieving your SessionToken
 
 `GET /service/sessionToken`
 
@@ -47,15 +46,15 @@ try {
 }
 ```
 
-Para recuperar o **SessionToken**, enviar um GET para `/service/sessionToken` apenas com os headers:
+To retrieve the **SessionToken**, send a GET to `/ service / sessionToken` with only the headers:
 
 `"Content-Type": "application/json"`
 
 `"Authorization": "Basic am9uYXRoYW46REM4QS00QzE2ONHSNS1EQTZBRUY2O92SDRkQ2RDMyOC0wRjAz"`
 
-Você deve recuperar o **SessionToken** via Server Side por segurança, utilizar apenas o Session Token no Client Side.
+You should retrieve the **SessionToken** via Server Side for security, use only the Session Token on the Client Side.
 
-> Resposta da chamada do SessionToken
+> SessionToken call response
 
 ```
 {
@@ -65,17 +64,17 @@ Você deve recuperar o **SessionToken** via Server Side por segurança, utilizar
 ```
 
 <aside class="notice">
-    Alterar o Authorization para as suas credenciais <a href="?javascript#autentica-o-api">Ver autenticação</a>
+   Change Authorization for your credentials <a href="?javascript#autentica-o-api"> View Authentication </a>
 </aside>
 
-Após recuperar seu **SessionToken**, atribua no método **iPag.setIpagId('SESSION_TOKEN')** do ipag.js [Veja na aba JavaScript](?javascript#incluindo-o-ipag-js).
+After retrieving your **SessionToken**, assign it in the **iPag.setIpagId ('SESSION_TOKEN')** method of ipag.js [See the JavaScript tab] (? Javascript # incluindo-o-ipag-js).
 
 ```javascript
-iPag.setIpagId('COLOCAR SEU SESSION_TOKEN AQUI');
+iPag.setIpagId('PUT YOUR SESSION TOKEN HERE');
 ```
 
 
-## Habilitando o modo Sandbox
+## Enabling Sandbox Mode
 
 ```javascript
 ...
@@ -83,19 +82,19 @@ iPag.setTestMode();
 ...
 ```
 
-O modo Sandbox (Teste) é utilizado para que os tokens temporários sejam criados em ambiente sandbox.
+Sandbox (Test) mode is used so that temporary tokens are created in a sandbox environment.
 
-Caso não seja chamado, será feito uma tentativa de envio para o ambiente de produção do iPag.
+If it is not called, an attempt will be made to send it to iPag's production environment.
 
-[Veja na aba JavaScript](?javascript#habilitando-o-modo-sandbox)
+[See the JavaScript tab](?javascript#habilitando-o-modo-sandbox)
 
-## Entradas de Texto Formatadas com Formatter.js
+## Formatter.js Formatted Text Inputs
 
-O ipag.js detecta automaticamente se você possuí o Formatter.js e tenta formatar as entradas de dados de cartão. Você pode saber mais sobre o Formatter.js no [GitHub](https://github.com/jaridmargolin/formatter.js).
+Ipag.js automatically detects if you have Formatter.js and tries to format the card data entries. You can learn more about Formatter.js at [GitHub](https://github.com/jaridmargolin/formatter.js).
 
-Para isto você deve definir o seguinte atributo para o input do número do cartão: data-ipag="number" e chamar a função iPag.setup().
+For this you must set the following attribute to the card number input: data-ipag = "number" and call the iPag.setup() function.
 
->Exemplo de input com data-ipag="number"
+>Example input with data-ipag = "number"
 
 ```
 //html
@@ -109,11 +108,11 @@ iPag.setup();
 ...
 ```
 
-## Criando um token de pagamento (Processo completo com validação)
+## Creating a payment token (Complete process with validation)
 
 [Veja na aba JavaScript](?javascript#criando-um-token-de-pagamento-processo-completo-com-valida-o)
 
->O script abaixo utiliza a biblioteca do JQuery
+>The script below uses the JQuery library
 
 ```javascript
 jQuery(function($) {
@@ -124,19 +123,19 @@ jQuery(function($) {
   $("#payment-button").click(function(evt) {
       var form = $(this).parents('form');
       var createToken = function() {
-        iPag.setIpagId('COLOCAR SEU SESSION_TOKEN AQUI');
+        iPag.setIpagId('PUT YOUR SESSION TOKEN HERE');
         iPag.setTestMode();
 
         // Valida se o campo titular do cartão não está vazio.
         if (!iPag.validateHolder($('*[data-ipag="holder"]').val())) {
-            return alert('Titular é inválido!');
+            return alert('Invalid Holder!');
         }
         // Valida se a data de vencimento é válida.
         if (!iPag.validateExpiration(
             $('*[data-ipag="expiry_month"]').val(),
             $('*[data-ipag="expiry_year"]').val()
         )) {
-            return alert('Vencimento é inválido.');
+            return alert('Invalid Expiry date.');
         }
 
         /** Valida se o número do cartão de crédito é um número válido.
@@ -160,17 +159,17 @@ jQuery(function($) {
                     $('*[data-ipag="expiry_month"]').val('');
                     $('*[data-ipag="expiry_year"]').val('');
                     $('*[data-ipag="cvv"]').val('');
-                    // Você pode fazer outras verificações antes de fazer o submit
+                    // You can do other checks before submitting
                     form.get(0).submit();
                 } else {
-                    alert("Erro salvando cartão: " + JSON.stringify(response));
+                    alert("Error saving card: " + JSON.stringify(response));
                 }
             })
             .catch(function(error){
-                alert("Erro salvando cartão: " + JSON.stringify(error));
+                alert("Error saving card:  " + JSON.stringify(error));
             });
         } else {
-            return alert('Número do cartão inválido!');
+            return alert('Invalid Card Number!');
         }
       }
       createToken();
@@ -178,35 +177,35 @@ jQuery(function($) {
 });
 ```
 
-O Token representa um cartão de crédito, e deve ser enviado no campo **token_cartao** para API do iPag.
+The Token represents a credit card, and must be submitted in the ** token_cartao ** field for the iPag API.
 
-Os campos do formulário devem ter o atributo data-ipag para cada campo abaixo:
+The form fields must have the data-ipag attribute for each field below:
 
-* holder => Titular do cartão
-* number => Número do cartão
-* cvv => Código de segurança do cartão
-* expiry_month => Mês de vencimento do cartão
-* expiry_year => Ano de vencimento do cartão
+* holder => Card Holder
+* number => Card number
+* cvv => Security verification code
+* expiry_month => Expiry Month
+* expiry_year => Expiry Year
 
-## Funções Auxiliares
+## Auxiliar Functions
 
-[Veja na aba JavaScript](?javascript#fun-es-auxiliares)
+[See on JavaScript Tab](?javascript#fun-es-auxiliares)
 
 ### iPag.validateCreditCardNumber
-Valida o número do cartão de crédito utilizando o algoritmo Luhn
+Validate the credit card number using the Luhn algorithm
 
 > iPag.validateCreditCardNumber
 
 ```javascript
-iPag.validateCreditCardNumber('5454545454545454') // retorna true
-iPag.validateCreditCardNumber('1234') // retorna false
+iPag.validateCreditCardNumber('5454545454545454') // returns true
+iPag.validateCreditCardNumber('1234') // returns false
 ```
 
 ### iPag.validateHolder
 
 > iPag.validateHolder
 
-Valida se o titular do cartão não é vazio
+Validates if the cardholder is not empty
 
 ```javascript
 iPag.validateHolder('FULANO DA SILVA') // retorna true
@@ -217,7 +216,7 @@ iPag.validateHolder('') // retorna false
 
 > iPag.validateExpiration
 
-Valida se a data de vencimento do cartão é válida.
+Validates if the card's due date is valid.
 
 ```javascript
 iPag.validateExpiration('10', '2021') // retorna true
@@ -225,6 +224,6 @@ iPag.validateExpiration('10', '21') // retorna true
 iPag.validateExpiration('08', '2016') // retorna false
 ```
 
-## Formulário (Checkout) de Exemplo
+## Sample Checkout Form
 
-[Clique aqui para visualizar o formulário](https://sandbox.ipag.com.br/checkout-demo)
+[Click here to view the form](https://sandbox.ipag.com.br/checkout-demo)

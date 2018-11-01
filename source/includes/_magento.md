@@ -1,65 +1,60 @@
-# Integração Magento
+# Magento Integration
 
-<aside class="notice">
-    Atenção: Caso esteja usando o módulo Idev OneStepCheckout, note que este módulo é compatível apenas com o Idev OneStepCheckout 3.1 e superiores
+<aside class = "notice">
+  Caution: If you are using the Idev OneStepCheckout module, please note that this module is only compatible with Idev OneStepCheckout 3.1 and higher
 </aside>
 
-Copie o conteúdo do arquivo Zip para o diretório onde o seu Magento está instalado.
-<aside class="notice">
-    Note que é necessário instalar também o módulo WLPayment e Controle de Fraudes.
+Copy the contents of the Zip file to the directory where your Magento is installed.
+<aside class = "notice">
+  Note that you must also install the WLPayment and Fraud Control module.
 </aside>
 
-Crie a pasta log dentro do diretório var do Magento, ficará <magentodir>/var/log. Este diretório deve ter permissões gerais de escrita (777).
+Create the log folder inside the Magento var directory, it will become <magentodir>/var/log. This directory must have write general permissions (777).
 
-## Configuração no painel de administração do Magento
+## Setup in the Magento admin panel
 
-1. Entre na página de administração do Magento.
+1. Go to the Magento admin page.
 
-2. Vá em Sistema > Configuração > Cache Management.
-	No campo "All Cache", escolha "Atualizar"
-	Em seguida clique em "Salvar configurações de cache"
+2. Go to System> Configuration> Cache Management.
+In the "All Cache" field, choose "Update"
+Then click "Save cache settings"
 
-3. Nas opções do módulo iPag, preencha os campos como demonstrado abaixo:
- * Habilitado: Sim
- * Título: Cartões de Crédito
- * Status de novos pedidos: Processando ou Pendente
- * Código/Login iPag: Preencha o campo com o login utilizado para acessar nosso painel
- * Ambiente: Produção
- * Taxa de Juros (%): Taxa de juros mensal. Deixe em branco caso não queira cobrar juros
- * Número de parcelas para valor a vista: Número máximo de parcelas para as quais não se cobrará juros.
- * Pagamento países permitidos: Todos os países permitidos
- * Debug: não
+3. In the iPag module options, complete the fields as shown below:
+    * Enabled: Yes
+    * Title: Credit Cards
+    * New Order Status: Processing or Pending
+    * Code/Login iPag: Fill in the field with the login used to access our panel
+    * Environment: Production
+    * Interest rate (%): Monthly interest rate. Leave blank if you do not want to charge interest
+    * Number of installments for cash value: Maximum number of installments for which no interest will be charged.
+    * Payment allowed countries: All countries allowed
+    * Debug: No
 
-<aside class="notice">
-    Certifique-se de copiar o diretório app/design/frontend/base/default/template/librepag/ para o diretório correspondente do template que está sendo utilizado.
+<aside class = "notice">
+  Be sure to copy the app/design/frontend/base/default/template/librepag/directory to the corresponding directory of the template being used.
 </aside>
 
-## Páginas de Sucesso e de Falha
-<aside class="warning">
-    Certifique-se de que você copiou os arquivos abaixo para o seu template.
-	Esses arquivos contém alterações para que as páginas de sucesso e de falha exibam informações sobre a transação.
-	Sem isso, a operadora não homologará a loja.
+## Success and Failure Pages
+<aside class = "warning">
+    Make sure you've copied the files below for your template.
+These files contain changes so that the success and failure pages display information about the transaction.
+Without this, the operator will not approve the store.
 </aside>
 *app/design/frontend/default/default/template/checkout/onepage/failure.phtml*
 *app/design/frontend/default/default/template/checkout/success.phtml*
 
 
-Caso esteja utilizando o módulo OneStepCheckout da Idev, atualize também o arquivo summary.phtml que se encontra no diretório abaixo
+If you are using the Idev OneStepCheckout module, also update the summary.phtml file that is in the directory below
 
 *app/design/frontend/default/default/template/onestepcheckout/summary.phtml*
 
-A atualização deste arquivo é opcional, mas garante que o valor das parcelas seja exibido corretamente no checkout.
+Updating this file is optional, but ensures that the value of the parcels is displayed correctly at checkout.
 
-## Observação
+## Note
+In Magento version 1.4, to improve the look of Checkout, you may need to enter the commands in the styles.css file
 
-```css
-.sp-methods .form-list .input-box {width: 100%}
-.sp-methods .form-list label {float: none}
-```
-Na versão 1.4 do Magento, para melhorar a aparência do Checkout, pode ser necessário inserir os comandos no arquivo styles.css
-
-## Configuração dos Métodos de Pagamento
-Acesse sua conta no <a href="https://painel-sandbox.ipag.com.br"> Painel do iPag</a> e configure os métodos de pagamento.
-<aside class="notice">
-    Em caso de dúvidas, entre em contato conosco enviando um email para suporte@ipag.com.br
+## Setting Payment Methods
+Sign in to your <a href="https://painel-sandbox.ipag.com"> iPag Dashboard </a> and set up payment methods.
+<aside class = "notice">
+    If you have any questions, please contact us by sending an email to suporte@ipag.com.br
 </aside>

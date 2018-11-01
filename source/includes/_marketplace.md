@@ -1,55 +1,55 @@
-# (Marketplace) - Cadastrar & Credenciar Vendedor
+# (Marketplace) - Register & Accredit Vendor
 
-### O que é?
+### What is it ?
 
-O serviço de credenciamento é um conjunto de web-services que permitem automatização total do processo de credenciamento, com APIs para cadastro de novos vendedores, gestão de documentação necessária ao processo de "Conheça Seu Cliente".
+The accreditation service is a set of web-services that allow full automation of the accreditation process, with APIs to register new vendors, management of documentation necessary to the process of "Know Your Customer".
 
-Para usar o serviço de Credenciamento, você precisa:
+To use the Accreditation service, you must:
 
-1. Realizar o cadastro de um [novo vendedor](#cadastrar-um-seller-amp-parceiro-marketplace-via-api) pela API;
-2. Enviar a documentação necessária ao processo de "Conheça Seu Cliente";
-3. Uma vez que o cadastro seja validado e liberado pela nossa equipe, você poderá enviar transações e realizar split em nome deste vendedor;
+1. Register a [new seller](#cadastrar-um-seller-amp-parceiro-marketplace-via-api) through the API;
+2. Send the necessary documentation to the "Know Your Customer" process;
+3. Once the registration is validated and released by our team, you can send transactions and split on behalf of this seller;
 
-## Cadastrar um Seller & Parceiro Marketplace via API
+## Register a Seller & Marketplace Partner via API
 
-`POST /service/v1`
+`POST / service / v1`
 
-## Cadastrar um vendedor do tipo Pessoa Jurídica (Business Seller)
+## Register a seller of type Legal (Business Seller)
 
-> Exemplo de integração
+> Integration example
 
-```php
-<?php
+``` php
+<? php
 
-$url = 'https://sandbox.ipag.com.br/service/v1';
+$ url = 'https://sandbox.ipag.com.br/service/v1';
 
-$content = http_build_query(array(
-    "ctrl"                 => 'zoopbusiness',
-    "business_name"        => 'Test Co.',
-    "business_phone"       => '1187654321',
-    "business_email"       => 'test@business.com',
-    "business_description" => 'A test business',
-    "business_cnpj"        => '29654759000170',
-    "address_street"       => 'P Sherman',
-    "address_number"       => '42',
-    "address_complement"   => '',
-    "address_neighborhood" => 'Wallaby Way',
-    "address_postalcode"   => '01000000',
-    "address_city"         => 'Sydney',
-    "address_state"        => 'SP',
-    "owner_firstname"      => 'Test',
-    "owner_lastname"       => 'Seller',
-    "owner_phone"          => '1112345678',
-    "owner_email"          => 'test@owner.com',
-    "owner_cpf"            => '45237426182',
-    "owner_birthdate"      => '1987-11-11',
-    "bank_name"            => 'Test Seller',
-    "bank_cpf"             => '45237426182',
-    //Se informado cpf não informar cnpj
-    "bank_cnpj"            => '29654759000170',
-    "bank_code"            => '341',
-    "bank_agencynumber"    => '1234',
-    "bank_accountnumber"   => '12345-4'
+$ content = http_build_query (array (
+    "ctrl" => 'zoopbusiness',
+    "business_name" => 'Test Co.',
+    "business_phone" => '1187654321',
+    "business_email" => 'test@business.com',
+    "business_description" => 'A test business',
+    "business_cnpj" => '29654759000170',
+    "address_street" => 'P Sherman',
+    "address_number" => '42',
+    "address_complement" => '',
+    "address_neighborhood" => 'Wallaby Way',
+    "address_postalcode" => '01000000',
+    "address_city" => 'Sydney',
+    "address_state" => 'SP',
+    "owner_firstname" => 'Test',
+    "owner_lastname" => 'Seller',
+    "owner_phone" => '1112345678',
+    "owner_email" => 'test@owner.com',
+    "owner_cpf" => '45237426182',
+    "owner_birthdate" => '1987-11-11',
+    "bank_name" => 'Test Seller',
+    "bank_cpf" => '45237426182',
+    // If informed, cpf does not inform cnpj
+    "bank_cnpj" => '29654759000170',
+    "bank_code" => '341',
+    "bank_agencynumber" => '1234',
+    "bank_accountnumber" => '12345-4'
 ));
 
 $username = 'API_ID';
@@ -76,37 +76,37 @@ curl --request POST \
   --data 'ctrl=zoopbusiness&owner_phone=1112345678&owner_cpf=64028478286&owner_email=test%40owner.com&owner_birthdate=1987-11-11&owner_firstname=Test&owner_lastname=Seller&address_street=P%20Sherman&address_number=42&address_neighborhood=Wallaby%20Way&address_postalcode=01000000&address_city=Sydney&address_state=SP&bank_name=Test%20Seller&bank_cnpj=77441655000120&bank_code=341&bank_agencynumber=1234&bank_accountnumber=12345-4&business_name=Test%20Co.&business_phone=1187654321&business_email=test%40business.com&business_description=A%20test%20business&business_cnpj=05533862000101'
 ```
 
-Campo |  tipo | Obrigatório | Descrição
-------| ----- | ----------- | ---------
-ctrl  | string | sim | Enviar: **'zoopbusiness'**
-business_name | string | sim | Nome Fantasia da Empresa
-business_phone | string | sim | Telefone da Empresa, DDD+Telefone mínimo de 10 digitos e máximo de 11 digitos
-business_email | string | sim | Email de contato da Empresa
-business_description | string | sim | Descrição da Empresa
-business_cnpj | string | sim | CNPJ da Empresa
-address_street | string | sim | Endereço da Empresa (Rua, Av.)
-address_number | string | sim | Número do endereço
-address_complement | string | não | Complemento do endereço
-address_neighborhood | string | sim | Bairro do endereço
-address_postalcode | string | sim | CEP do endereço (8 digitos)
-address_city | string | sim | Cidade
-address_state | string | sim  | Estado (2 digitos)
-owner_firstname | string | sim | Primeiro nome do Sócio responsável pela Empresa
-owner_lastname | string | sim | Último nome do Sócio responsável pela Empresa
-owner_phone | string | sim | Telefone de contato direto com o sócio
-owner_email | string | sim | E-mail do Sócio responsável
-owner_cpf | string | sim | CPF do Sócio responsável pela Empresa
-owner_birthdate | string | não | Data de Nascimento do Sócio responsável
-bank_name | string | não * | Titular da Conta Bancária
-bank_cpf | string | não * | CPF do Titular da Conta caso esteja em nome de Pessoa Física
-bank_cnpj | string | não * | CNPJ do Titular da Conta caso esteja em nome de Pessoa Jurídica
-bank_code | string | não * | [Código do Banco (3 digitos)](https://pt.wikipedia.org/wiki/Lista_de_bancos_do_Brasil)
-bank_agencynumber | string | não * | Número da Agência Bancária
-bank_accountnumber | string | não * | Número da Conta Bancária
+Field | type | Required | description
+------ | ----- | ----------- | ---------
+ctrl | string | sim | Send: **'zoopbusiness'**
+business_name | string | sim | Company Fantasy Name
+business_phone | string | sim | Company Telephone, DDD + Telephone of minimum of 10 digits and maximum of 11 digits
+business_email | string | sim | Company Contact Email
+business_description | string | sim | Company Description
+business_cnpj | string | sim | CNPJ of the Company
+address_street | string | sim | Company Address (Street, Av.)
+address_number | string | sim | Address number
+address_complement | string | not | Address complement
+address_neighborhood | string | sim | Address Neighborhood
+address_postalcode | string | sim | Address zip (8 digits)
+address_city | string | sim | City
+address_state | string | sim | State (2 digits)
+owner_firstname | string | sim | First name of Member responsible for the Company
+owner_lastname | string | sim | Last name of the Member responsible for the Company
+owner_phone | string | sim | Direct contact telephone with the partner
+owner_email | string | sim | E-mail of the Member responsible
+owner_cpf | string | sim | CPF of the Member responsible for the Company
+owner_birthdate | string | not | Date of Birth of Partner in charge
+bank_name | string | not * | Bank Account Holder
+bank_cpf | string | not * | CPF of the Account Holder if it is in the name of Individual
+bank_cnpj | string | not * | CNPJ of the Account Holder if it is in the name of Legal Entity
+bank_code | string | not * | [Bank Code(3 digits)](https://pt.wikipedia.org/wiki/Lista_de_bancos_do_Brasil)
+bank_agencynumber | string | not * | Bank Agency Number
+bank_accountnumber | string | not * | Bank account number
 
-* Se deseja vincular uma conta bancária deve ser informado todos os campos *bank*
+* If you want to link a bank account you must inform all *bank* fields
 
-### Retorno **Business Seller**
+### Return **Business Seller**
 
 > Retorno (XML)
 
@@ -153,46 +153,46 @@ bank_accountnumber | string | não * | Número da Conta Bancária
 </retorno>
 ```
 
-Campo | Descrição
-------|----------
+Field | description
+------ | ----------
 retorno | Container
-ipag_id | id do Parceiro Marketplace no iPag
-seller_id | Seller Id do Vendedor na Zoop
-owner| Container
-owner[name] | Nome do sócio
-owner[email] | Email do sócio
-owner[birthdate] | Data de nascimento do sócio
-owner[phone] | Telefone do sócio
-owner[cpf] | CPF do sócio
+ipag_id | Marketplace Partner id on iPag
+seller_id | Seller Id from Seller at Zoop
+owner | Container
+owner [name] | Name of member
+owner [email] | Partner Email
+owner [birthdate] | Partner's date of birth
+owner [phone] | Member Phone
+owner [cpf] | Partner CPF
 address | Container
-address[street] | Endereço da Empresa
-address[number] | Número do endereço
-address[complement] | Complemento
-address[neighborhood] | Bairro
-address[city] | Cidade
-address[state] | Estado
-address[postacode] | CEP
-address[countrycode] | País
+address [street] | Company's adress
+address [number] | Address number
+address [complement] | Complement
+address [neighborhood] | Neighborhood
+address [city] | City
+address [state] | state
+address [postacode] | Zip code
+address [countrycode] | Parents
 business | Container
-business[name] | Nome fantasia
-business[phone] | Telefone
-business[email] | Email da Empresa
-business[website] | Website da Empresa
-business[description] | Descrição da Empresa
-business[facebook] | Facebook da Empresa
-business[twitter] | Twitter da Empresa
-business[cnpj] | CNPJ da Empresa
+business [name] | Fantasy name
+business [phone] | telephone
+business [email] | Company Email
+business [website] | The company's website
+business [description] | Company Description
+business [facebook] | Company Facebook
+business [twitter] | Company Twitter
+business [cnpj] | CNPJ of the Company
 bank | Container
-bank[code] | Código do banco
-bank[bankname] | Nome do Banco
-bank[name] | Nome do Titular
-bank[agencynumber] | Número da Agência
-bank[accountnumber] | Número da Conta
-bank[document] | Documento do Titular
+bank [code] | Bank Code
+bank [bankname] | Bank name
+bank [name] | Cardholder Name
+bank [agencynumber] | Agency Number
+bank [accountnumber] | Account number
+bank [document] | Holder's Document
 
-## Cadastrar um vendedor do tipo Pessoa Física (Individual Seller)
+## Register a seller of the type Individual (Individual Seller)
 
-> Exemplo de integração
+> Integration example
 
 ```php
 <?php
@@ -245,32 +245,32 @@ curl --request POST \
   --data 'ctrl=zoopindividual&owner_phone=1112345678&owner_cpf=08935742449&owner_email=test%40owner.com&owner_birthdate=1987-11-11&owner_firstname=Test&owner_lastname=Seller&address_street=P%20Sherman&address_number=42&address_neighborhood=Wallaby%20Way&address_postalcode=01000000&address_city=Sydney&address_state=SP&bank_name=Test%20Seller&bank_cnpj=77441655000120&bank_code=341&bank_agencynumber=1234&bank_accountnumber=12345-4'
 ```
 
-Campo |  tipo | Obrigatório | Descrição
-------| ----- | ----------- | ---------
-ctrl  | string | sim | Enviar: **'zoopindividual'**
-address_street | string | sim | Endereço da Empresa (Rua, Av.)
-address_number | string | sim | Número do endereço
-address_complement | string | não | Complemento do endereço
-address_neighborhood | string | sim | Bairro do endereço
-address_postalcode | string | sim | CEP do endereço (8 digitos)
-address_city | string | sim | Cidade
-address_state | string | sim  | Estado (2 digitos)
-owner_firstname | string | sim | Primeiro nome do Sócio responsável pela Empresa
-owner_lastname | string | sim | Último nome do Sócio responsável pela Empresa
-owner_phone | string | sim | Telefone de contato direto com o sócio
-owner_email | string | sim | E-mail do Sócio responsável
-owner_cpf | string | sim | CPF do Sócio responsável pela Empresa
-owner_birthdate | string | não | Data de Nascimento do Sócio responsável
-bank_name | string | não * | Titular da Conta Bancária
-bank_cpf | string | não * | CPF do Titular da Conta caso esteja em nome de Pessoa Física
-bank_cnpj | string | não * | CNPJ do Titular da Conta caso esteja em nome de Pessoa Jurídica
-bank_code | string | não * | [Código do Banco (3 digitos)](https://pt.wikipedia.org/wiki/Lista_de_bancos_do_Brasil)
-bank_agencynumber | string | não * | Número da Agência Bancária
-bank_accountnumber | string | não * | Número da Conta Bancária
+Field | type | Required | description
+------ | ----- | ----------- | ---------
+ctrl | string | sim | Send: **'zoopindividual'**
+address_street | string | sim | Company Address (Street, Av.)
+address_number | string | sim | Address number
+address_complement | string | not | Address complement
+address_neighborhood | string | sim | Address Neighborhood
+address_postalcode | string | sim | Address zip (8 digits)
+address_city | string | sim | City
+address_state | string | sim | State (2 digits)
+owner_firstname | string | sim | First name of Member responsible for the Company
+owner_lastname | string | sim | Last name of the Member responsible for the Company
+owner_phone | string | sim | Direct contact telephone with the partner
+owner_email | string | sim | E-mail of the Member responsible
+owner_cpf | string | sim | CPF of the Member responsible for the Company
+owner_birthdate | string | not | Date of Birth of Partner in charge
+bank_name | string | not * | Bank Account Holder
+bank_cpf | string | not * | CPF of the Account Holder if it's in the name of Individual
+bank_cnpj | string | not * | CNPJ of the Account Holder if it is in the name of Legal Entity
+bank_code | string | not * | [Bank Code (3 digits)](https://pt.wikipedia.org/wiki/Lista_de_bancos_do_Brasil)
+bank_agencynumber | string | not * | Bank Agency Number
+bank_accountnumber | string | not * | Bank account number
 
-* Se deseja vincular uma conta bancária deve ser informado todos os campos *bank*
+* If you want to link a bank account you must inform all *bank* fields 
 
-### Retorno **Business Individual**
+### Return ** Business Individual **
 
 > Retorno (XML)
 
@@ -306,38 +306,37 @@ bank_accountnumber | string | não * | Número da Conta Bancária
     </bank>
 </retorno>
 ```
-
-Campo | Descrição
-------|----------
+Field | description
+------ | ----------
 retorno | Container
-ipag_id | id do Parceiro Marketplace no iPag
-seller_id | Seller Id do Vendedor na Zoop
-owner| Container
-owner[name] | Nome do sócio
-owner[email] | Email do sócio
-owner[birthdate] | Data de nascimento do sócio
-owner[phone] | Telefone do sócio
-owner[cpf] | CPF do sócio
+ipag_id | Marketplace Partner id on iPag
+seller_id | Seller Id from Seller at Zoop
+owner | Container
+owner [name] | Name of member
+owner [email] | Partner Email
+owner [birthdate] | Partner's date of birth
+owner [phone] | Member Phone
+owner [cpf] | Partner CPF
 address | Container
-address[street] | Endereço da Empresa
-address[number] | Número do endereço
-address[complement] | Complemento
-address[neighborhood] | Bairro
-address[city] | Cidade
-address[state] | Estado
-address[postacode] | CEP
-address[countrycode] | País
+address [street] | Company's adress
+address [number] | Address number
+address [complement] | Complement
+address [neighborhood] | Neighborhood
+address [city] | City
+address [state] | state
+address [postacode] | Zip code
+address [countrycode] | Parents
 bank | Container
-bank[code] | Código do banco
-bank[bankname] | Nome do Banco
-bank[name] | Nome do Titular
-bank[agencynumber] | Número da Agência
-bank[accountnumber] | Número da Conta
-bank[document] | Documento do Titular
+bank [code] | Bank Code
+bank [bankname] | Bank name
+bank [name] | Cardholder Name
+bank [agencynumber] | Agency Number
+bank [accountnumber] | Account number
+bank [document] | Holder's Document
 
-## Cadastrar um banco (Bank)
+## Registering a bank (Bank)
 
-> Exemplo de integração
+> Integration example
 
 ```shell
 curl -X POST \
@@ -379,18 +378,17 @@ $result = file_get_contents($url, null, $context);
 
 echo print_r($result, true);
 ```
+Field | type | Required | description
+------ | ----- | ----------- | ---------
+ctrl | string | sim | Send: ** 'zoopbank' **
+bank_name | string | sim | Bank Account Holder
+bank_cpf | string | not * | CPF of the Account Holder if it is in the name of Individual
+bank_cnpj | string | not * | CNPJ of the Account Holder if it is in the name of Legal Entity
+bank_code | string | sim | [Bank Code (3 digits)] (https://pt.wikipedia.org/wiki/Lista_de_bancos_do_Brasil)
+bank_agencynumber | string | sim | Bank Agency Number
+bank_accountnumber | string | sim | Bank account number
 
-Campo |  tipo | Obrigatório | Descrição
-------| ----- | ----------- | ---------
-ctrl  | string | sim | Enviar: **'zoopbank'**
-bank_name | string | sim | Titular da Conta Bancária
-bank_cpf | string | não * | CPF do Titular da Conta caso esteja em nome de Pessoa Física
-bank_cnpj | string | não * | CNPJ do Titular da Conta caso esteja em nome de Pessoa Jurídica
-bank_code | string | sim | [Código do Banco (3 digitos)](https://pt.wikipedia.org/wiki/Lista_de_bancos_do_Brasil)
-bank_agencynumber | string | sim | Número da Agência Bancária
-bank_accountnumber | string | sim | Número da Conta Bancária
-
-* É necessário enviar CPF ou CNPJ.
+* It is necessary to send CPF or CNPJ.
 
 ### Retorno (Bank)
 
@@ -411,21 +409,21 @@ bank_accountnumber | string | sim | Número da Conta Bancária
 </retorno>
 ```
 
-Campo | Descrição
-------|----------
+Field | description
+------ | ----------
 retorno | Container
-bank_id | ID do banco
+bank_id | Bank ID
 bank | Container
-bank[code] | Código do banco
-bank[bankname] | Nome do Banco
-bank[name] | Nome do Titular
-bank[agencynumber] | Número da Agência
-bank[accountnumber] | Número da Conta
-bank[document] | Documento do Titular
+bank [code] | Bank Code
+bank [bankname] | Bank name
+bank [name] | Cardholder Name
+bank [agencynumber] | Agency Number
+bank [accountnumber] | Account number
+bank [document] | Holder's Document
 
-## Vincular Banco ao Vendedor (Sync Bank)
+## Link Bank to Seller (Sync Bank)
 
-> Exemplo de integração
+> Integration example
 
 ```shell
 curl -X POST \
@@ -461,15 +459,15 @@ $context = stream_context_create(array(
 $result = file_get_contents($url, null, $context);
 
 echo print_r($result, true);
+
 ```
+Field | type | Required | description
+------ | ----- | ----------- | ---------
+ctrl | string | sim | Send: ** 'zoopsyncbank' **
+bank_id | string | sim | Bank ID
+seller_id | string | sim | Seller ID
 
-Campo |  tipo | Obrigatório | Descrição
-------| ----- | ----------- | ---------
-ctrl  | string | sim | Enviar: **'zoopsyncbank'**
-bank_id | string | sim | ID do Banco
-seller_id | string | sim | ID do Seller
-
-### Retorno Sync Bank
+### Sync Bank Return
 
 > Retorno (XML)
 
@@ -507,37 +505,37 @@ seller_id | string | sim | ID do Seller
 </retorno>
 ```
 
-Campo | Descrição
-------|----------
+Field | description
+------ | ----------
 retorno | Container
-ipag_id | id do Parceiro Marketplace no iPag
-seller_id | Seller Id do Vendedor na Zoop
-owner| Container
-owner[name] | Nome do sócio
-owner[email] | Email do sócio
-owner[birthdate] | Data de nascimento do sócio
-owner[phone] | Telefone do sócio
-owner[cpf] | CPF do sócio
+ipag_id | Marketplace Partner id on iPag
+seller_id | Seller Id from Seller at Zoop
+owner | Container
+owner [name] | Name of member
+owner [email] | Partner Email
+owner [birthdate] | Partner's date of birth
+owner [phone] | Member Phone
+owner [cpf] | Partner CPF
 address | Container
-address[street] | Endereço da Empresa
-address[number] | Número do endereço
-address[complement] | Complemento
-address[neighborhood] | Bairro
-address[city] | Cidade
-address[state] | Estado
-address[postacode] | CEP
-address[countrycode] | País
+address [street] | Company's adress
+address [number] | Address number
+address [complement] | Complement
+address [neighborhood] | Neighborhood
+address [city] | City
+address [state] | state
+address [postacode] | Zip code
+address [countrycode] | Parents
 bank | Container
-bank[code] | Código do banco
-bank[bankname] | Nome do Banco
-bank[name] | Nome do Titular
-bank[agencynumber] | Número da Agência
-bank[accountnumber] | Número da Conta
-bank[document] | Documento do Titular
+bank [code] | Bank Code
+bank [bankname] | Bank name
+bank [name] | Cardholder Name
+bank [agencynumber] | Agency Number
+bank [accountnumber] | Account number
+bank [document] | Holder's Document
 
-## Consultar um vendedor (Get Seller)
+## Consult a seller (Get Seller)
 
-> Exemplo de integração
+> Integration example
 
 
 ```shell
@@ -574,12 +572,12 @@ $result = file_get_contents($url, null, $context);
 echo print_r($result, true);
 ```
 
-Campo |  tipo | Obrigatório | Descrição
-------| ----- | ----------- | ---------
-ctrl  | string | sim | Enviar: **'zoopgetseller'**
-seller_id | string | sim | ID do Zoop Seller
+Field | type | Required | description
+------ | ----- | ----------- | ---------
+ctrl | string | sim | Send: ** 'zoopgetseller' **
+seller_id | string | sim | Zoop Seller ID
 
-### Retorno da consulta
+### Query Return
 
 > Retorno (XML)
 
@@ -617,45 +615,45 @@ seller_id | string | sim | ID do Zoop Seller
 </retorno>
 ```
 
-Campo | Descrição
-------|----------
-retorno | Container
-ipag_id | id do Parceiro Marketplace no iPag
-seller_id | Seller Id do Vendedor na Zoop
-owner| Container
-owner[name] | Nome do sócio
-owner[email] | Email do sócio
-owner[birthdate] | Data de nascimento do sócio
-owner[phone] | Telefone do sócio
-owner[cpf] | CPF do sócio
-address | Container
-address[street] | Endereço da Empresa
-address[number] | Número do endereço
-address[complement] | Complemento
-address[neighborhood] | Bairro
-address[city] | Cidade
-address[state] | Estado
-address[postacode] | CEP
-address[countrycode] | País
-bank | Container
-bank[code] | Código do banco
-bank[bankname] | Nome do Banco
-bank[name] | Nome do Titular
-bank[agencynumber] | Número da Agência
-bank[accountnumber] | Número da Conta
-bank[document] | Documento do Titular
+Field | description
+------ | ----------
+retorno | *Container*
+ipag_id | Marketplace Partner id on iPag
+seller_id | Seller Id from Seller at Zoop
+owner | *Container*
+owner [name] | Name of member
+owner [email] | Partner Email
+owner [birthdate] | Partner's date of birth
+owner [phone] | Member Phone
+owner [cpf] | Partner CPF
+address | *Container*
+address [street] | Company's adress
+address [number] | Address number
+address [complement] | Complement
+address [neighborhood] | Neighborhood
+address [city] | City
+address [state] | state
+address [postacode] | Zip code
+address [countrycode] | Parents
+bank | *Container*
+bank [code] | Bank Code
+bank [bankname] | Bank name
+bank [name] | Cardholder Name
+bank [agencynumber] | Agency Number
+bank [accountnumber] | Account number
+bank [document] | Holder's Document
 
-## Conheça seu Cliente (Envio de Documentos)
+## Know Your Customer (Document Delivery)
 
-### Arquivos
-- Com até 2MB no máximo.
-- Imagem ou extensão: .jpg, .png e .pdf.
-- Os arquivos podem ser fotografados ou scaneados.
-- Os documentos precisam estar completos com todas as informações, sem cortes ou rasuras.
-- Enviar frente e verso dos documentos.
-- O prazo para análise da documentação é de até 5 dias úteis.
+### Files
+- Up to 2MB max.
+- Image or extension: .jpg, .png and .pdf.
+- Files can be photographed or scanned.
+- The documents need to be complete with all the information, without cuts or erasures.
+- Send two-sided documents.
+- The deadline for review of the documentation is up to 5 business days.
 
-Pode ser enviado via Painel iPag também: [Enviar Documentos](https://painel-sandbox.ipag.com.br/?r=admin/documentos)
+It can be sent via iPag Panel also: [Send Documents] (https://painel-sandbox.ipag.com.br/?r=admin/documentos)
 
 `POST /service/v1`
 
@@ -674,16 +672,16 @@ curl --request POST \
   --form seller_id=8dc2dbf71518482a859e6057359bba46
 ```
 
-Campo |  tipo | Obrigatório | Descrição
-------| ----- | ----------- | ---------
-ctrl  | string | sim | Enviar: **'seller_documents'**
-seller_id | string | sim | Login do Parceiro/Vendedor no iPag
-cpf | file | não | Imagem do CPF,RG ou CNH do Sócio Resposável (JPG, PNG ou PDF)
-cnpj | file | não | Imagem do Cartão CNPJ do Vendedor (caso seja Pessoa Juridica) (JPG, PNG ou PDF)
-atividade | file | não | Imagem de Nota Fiscal ou Cartão de Visitas (JPG, PNG ou PDF)
-comprovante | file | não | Imagem de Conta de luz, água ou telefone (JPG, PNG ou PDF)
+Field | type | Required | description
+------ | ----- | ----------- | ---------
+ctrl | string | sim | Send: ** 'seller_documents' **
+seller_id | string | sim | Partner / Vendor Login on iPag
+cpf | file | not | Image of the CPF, RG or CNH of the Resposible Member (JPG, PNG or PDF)
+cnpj | file | not | Image of Seller's CNPJ Card (if legal person) (JPG, PNG or PDF)
+comprovate | file | not | Image of Invoice or Business Card (JPG, PNG or PDF)
+comprovate | file | not | Image of Light, water or telephone bill (JPG, PNG or PDF)
 
-### Retorno
+### Return
 
 > Retorno (XML)
 
@@ -699,12 +697,12 @@ comprovante | file | não | Imagem de Conta de luz, água ou telefone (JPG, PNG 
 </retorno>
 ```
 
-Campo | Descrição
-------|----------
+Field | description
+------ | ----------
 retorno | Container
-success | Caso tenha sido enviado com sucesso irá retornar "ok"
-message | Mensagem de retorno
-cpf | status do arquivo
-cnpj | status do arquivo
-atividade | status do arquivo
-comprovante | status do arquivo
+success | If it was sent successfully it will return "ok"
+message | Return message
+cpf | file status
+cnpj | file status
+atividade | file status
+comprovante | file status
