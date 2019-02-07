@@ -115,13 +115,22 @@ try {
 }
 ```
 
+```shell
+curl -X POST \
+  https://sandbox.ipag.com.br/service/consult \
+  -H 'Authorization: Basic am9uYXRoYW46REM4QS00QzE2Yu75NS1EQTZBRUY2OC0wRkQ2RDMyOC0wRjAz' \
+  -H 'content-type: multipart/form-data' \
+  -F identificacao=teste \
+  -F transId=201803061703 \
+```
+
 Parâmetro | size | type | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
 identificacao | 60 | string | sim | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
 transId | 255 | string | sim/não | Código identificação da transação.
 numPedido | 20 | string | não/sim | Código identificação do pedido.
 retorno_tipo | 20 | string | não | `xml`
-url_retorno | 255 | string | não | Url da sua loja.
+url_retorno | 255 | string | não | Url de callback.
 
 <aside class="notice">
     Deve ser enviado pelo menos um dos campos: `transId` ou `numPedido`
@@ -157,11 +166,23 @@ try {
 }
 ```
 
+```shell
+curl -X POST \
+  https://sandbox.ipag.com.br/service/capture \
+  -H 'Authorization: Basic am9uYXRoYW46REM4QS00QzE2Yu75NS1EQTZBRUY2OC0wRkQ2RDMyOC0wRjAz' \
+  -H 'content-type: multipart/form-data' \
+  -F identificacao=teste \
+  -F transId=201803061703 \
+  -F valor=10.00 \
+```
+
 Parâmetro | size | type | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
 identificacao | 60 | string | sim | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
 transId | 255 | string | sim | Código identificação da transação.
-url_retorno | 255 | string | sim |`xml` ou  Url da sua loja.
+valor | 10 | float | não | Valor desejado da captura, pode ser igual ou menor o valor da transação. Caso seja menor será realizado a captura parcial.
+url_retorno | 255 | string | sim | Url de callback.
+retorno_tipo | 20 | string | não | `xml`
 
 <aside class="notice">
     Lembre, isto é apenas um exemplo para fazer testes de captura de pagamento.
@@ -193,11 +214,23 @@ try {
 }
 ```
 
+```shell
+curl -X POST \
+  https://sandbox.ipag.com.br/service/cancel \
+  -H 'Authorization: Basic am9uYXRoYW46REM4QS00QzE2Yu75NS1EQTZBRUY2OC0wRkQ2RDMyOC0wRjAz' \
+  -H 'content-type: multipart/form-data' \
+  -F identificacao=teste \
+  -F transId=201803061703 \
+  -F valor=10.00 \
+```
+
 Parâmetro | size | type | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
-identificacao | 60 | string | obrigatório | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
-transId | 255 | string | obrigatório | Código identificação da transação.
-url_retorno | 255 | string | obrigatório | Pode ser `xml` ou uma Url da sua loja.
+identificacao | 60 | string | sim | Código de identificação do estabelecimento no iPag (login de acesso ao painel)
+transId | 255 | string | sim | Código identificação da transação.
+valor | 10| float | não | Valor desejado do cancelamento, pode ser igual ou menor o valor da transação.
+url_retorno | 255 | string | não | Url de callback.
+retorno_tipo | 20 | string | não | `xml`
 
 <aside class="notice">
     Lembre, isto é apenas um exemplo para fazer testes de cancelamento de pagamento.

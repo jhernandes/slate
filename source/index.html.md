@@ -13,6 +13,9 @@ toc_footers:
 includes:
   - autenticacao
   - submission
+  - consult
+  - captura
+  - cancelamento
   - boletoparcelado
   - examples
   - ipagjs
