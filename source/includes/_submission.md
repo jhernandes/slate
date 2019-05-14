@@ -186,18 +186,30 @@ email | 30 | string | não| E-mail do cliente
 fone | 10 | string | não | Telefone do cliente
 birthdate | 10 | string | não | Data de nascimento do cliente (Ex.: 1989-03-28)[AAAA-MM-DD]
 
-### Dados do Endereço de Cobrança/Envio
+### Dados do Endereço de Cobrança (Billing)
 
 Campo | Tamanho | Tipo | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
-endereco | 30 | string | não | Endereço completo do cliente
-numero_endereco | 5 | number | não | Número do Endereço
-complemento | 100 | string | não | Complemento do Endereço
-bairro | 15 | string | não | Bairro do cliente
-cidade | 20 | string | não | Cidade do cliente
-estado | 2 | string | não | Estado do cliente
-pais | 15 | string | não | País do cliente
-cep | 8 | string | não | Cep do cliente
+endereco | 30 | string | não | Endereço de Cobrança
+numero_endereco | 5 | number | não | Número do Endereço de Cobrança
+complemento | 100 | string | não | Complemento do Endereço de Cobrança
+bairro | 15 | string | não | Bairro do endereço de Cobrança
+cidade | 20 | string | não | Cidade do endereço de Cobrança
+estado | 2 | string | não | Estado do endereço de Cobrança
+pais | 15 | string | não | País do endereço de Cobrança
+cep | 8 | string | não | Cep do endereço de Cobrança
+
+### Dados do Endereço de Entrega (Shipping)
+
+Campo | Tamanho | Tipo | Obrigatório | Descrição
+--------- | ----- | ----- | ----------- | ---------
+endereco_entrega | 30 | string | não | Endereço de entrega
+numero_endereco_entrega | 5 | number | não | Número do endereço de entrega
+complemento_entrega | 100 | string | não | Complemento do endereço de entrega
+bairro_entrega | 15 | string | não | Bairro do endereço de entrega
+cidade_entrega | 20 | string | não | Cidade do endereço de entrega
+estado_entrega | 2 | string | não | Estado do endereço de entrega
+cep_entrega | 8 | string | não | CEP do endereço de entrega
 
 ### Dados de Produto/Carrinho
 
